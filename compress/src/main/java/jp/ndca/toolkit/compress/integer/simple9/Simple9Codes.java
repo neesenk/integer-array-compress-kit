@@ -123,11 +123,11 @@ public class Simple9Codes extends AbstractCodes{
 					resultArray[currentPos++] = ( val << 8  ) >>> 29 ;
 					resultArray[currentPos++] = ( val << 11 ) >>> 29 ;
 					resultArray[currentPos++] = ( val << 14 ) >>> 29 ;
-					resultArray[currentPos++] = ( val << 16 ) >>> 29 ;
-					resultArray[currentPos++] = ( val << 19 ) >>> 29 ;
-					resultArray[currentPos++] = ( val << 22 ) >>> 29 ;
-					resultArray[currentPos++] = ( val << 25 ) >>> 29 ;
-					resultArray[currentPos++] = ( val << 28 ) >>> 29 ;
+					resultArray[currentPos++] = ( val << 17 ) >>> 29 ;
+					resultArray[currentPos++] = ( val << 20 ) >>> 29 ;
+					resultArray[currentPos++] = ( val << 23 ) >>> 29 ;
+					resultArray[currentPos++] = ( val << 26 ) >>> 29 ;
+					resultArray[currentPos++] = ( val << 29 ) >>> 29 ;
 					break;
 				}
 				case 3 : { //code num : 7, bitwidth : 4
@@ -167,7 +167,7 @@ public class Simple9Codes extends AbstractCodes{
 					break;
 				}
 				case 8 : { //code num : 2, bitwidth : 14
-					resultArray[currentPos++] = val ;
+					resultArray[currentPos++] = ( val << 4 ) >>> 4;
 					break;
 				}
 			}
