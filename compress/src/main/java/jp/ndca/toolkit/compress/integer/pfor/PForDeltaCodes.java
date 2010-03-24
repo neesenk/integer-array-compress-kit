@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import jp.ndca.toolkit.compress.integer.common.AbstractCodes;
+import jp.ndca.toolkit.compress.integer.common.AbstractIntRangeCodes;
 
-public class PForDeltaCodes extends AbstractCodes{
+public class PForDeltaCodes extends AbstractIntRangeCodes{
 
 	private static final int limitDataNum = 128;
 
@@ -165,14 +165,6 @@ public class PForDeltaCodes extends AbstractCodes{
 			}
 
 		}
-
-//		if( 127 < exception.length ){
-//			System.out.println("aa");
-//			int nextMax = 1 <<  b + 1;
-//			int exceptionNum = overMaxNum( exception, nextMax );
-//			return compress ( length, b + 1, offset, bytePerException, numbers, new int[exceptionNum] );
-//		}
-
 		int firstExceptionPos = j > 0 ? miss[0] + 1 : 0;
 
 		// firstExceptionPos = 0 represent no exception
@@ -527,8 +519,8 @@ public class PForDeltaCodes extends AbstractCodes{
 		else{
 
 			if(useGapList)
-			for(int i = 1 ; i < decode.length ; i++ )
-				decode[i] += decode[i-1];
+				for(int i = 1 ; i < decode.length ; i++ )
+					decode[i] += decode[i-1];
 			return decode;
 
 		}
