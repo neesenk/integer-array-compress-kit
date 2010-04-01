@@ -14,9 +14,6 @@ public abstract class AbstractIntRangeCodes {
 		if(useGapList)
 			numbers = toGapArray( numbers );
 
-//		for( int number : numbers )
-//			System.out.print(number+"\t");
-
 		return innerEncode(numbers);
 
 	}
