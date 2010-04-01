@@ -163,7 +163,7 @@ public class Simple9Codes extends AbstractIntRangeCodes{
 				}
 				case 7 : { //code num : 2, bitwidth : 14
 					resultArray[currentPos++] = ( val << 4  ) >>> 18 ;
-					resultArray[currentPos++] = ( val << 14 ) >>> 18 ;
+					resultArray[currentPos++] = ( val << 18 ) >>> 18 ;
 					break;
 				}
 				case 8 : { //code num : 2, bitwidth : 14
