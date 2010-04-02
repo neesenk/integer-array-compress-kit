@@ -1,4 +1,4 @@
-package jp.ndca.toolkit.compress.integer.simple9;
+package jp.ndca.toolkit.compress.integer.simple;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
