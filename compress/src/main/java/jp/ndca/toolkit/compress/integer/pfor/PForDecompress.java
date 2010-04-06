@@ -2109,7 +2109,7 @@ public class PForDecompress {
 			int val5  = encodedValue[ offSet++ ];
 
 			decode[ decodeOffset++ ]	 =   ( val1 << 12 ) >>> 12 ;
-			decode[ decodeOffset++ ]	 =   ( ( val2 << 24) >>> 12 | ( val1 >>> 20 ));
+			decode[ decodeOffset++ ]	 =   ( ( val2 << 24 ) >>> 12 ) | ( val1 >>> 20 );
 
 			decode[ decodeOffset++ ]	 =   ( val2 << 4 ) >>> 12 ;
 			decode[ decodeOffset++ ]	 =   ( ( val3 << 16 ) >>> 12 ) | ( val2 >>> 28 );
@@ -2131,7 +2131,7 @@ public class PForDecompress {
 		if( --rest == 0 ) return offSet;
 
 		int val2  = encodedValue[ offSet++ ];
-		decode[ ++decodeOffset ]	 =   ( ( val2 << 24) >>> 12 | ( val1 >>> 20 ));
+		decode[ ++decodeOffset ]	 =   ( ( val2 << 24 ) >>> 12 ) | ( val1 >>> 20 );
 		if( --rest == 0 ) return offSet;
 		decode[ ++decodeOffset ]	 =   ( val2 << 4 ) >>> 12 ;
 		if( --rest == 0 ) return offSet;
@@ -2153,7 +2153,6 @@ public class PForDecompress {
 	}
 
 
-	static int mask21bit = ( 1 << 21 ) - 1;
 	static int fastDeCompressFor21Bit( int offSet, int[] encodedValue, int dataNum, int decodeOffset, int[] decode ){
 
 		int maxBlocks	=  dataNum  >>  5;
@@ -2162,17 +2161,17 @@ public class PForDecompress {
 		// block process
 		for( int  block = 0 ; block < maxBlocks ; block++ ){
 
-			int val1  = encodedValue[ offSet++ ];
-			int val2  = encodedValue[ offSet++ ];
-			int val3  = encodedValue[ offSet++ ];
-			int val4  = encodedValue[ offSet++ ];
-			int val5  = encodedValue[ offSet++ ];
-			int val6  = encodedValue[ offSet++ ];
-			int val7  = encodedValue[ offSet++ ];
-			int val8  = encodedValue[ offSet++ ];
-			int val9  = encodedValue[ offSet++ ];
-			int val10 = encodedValue[ offSet++ ];
-			int val11 = encodedValue[ offSet++ ];
+			int val1   = encodedValue[ offSet++ ];
+			int val2   = encodedValue[ offSet++ ];
+			int val3   = encodedValue[ offSet++ ];
+			int val4   = encodedValue[ offSet++ ];
+			int val5   = encodedValue[ offSet++ ];
+			int val6   = encodedValue[ offSet++ ];
+			int val7   = encodedValue[ offSet++ ];
+			int val8   = encodedValue[ offSet++ ];
+			int val9   = encodedValue[ offSet++ ];
+			int val10  = encodedValue[ offSet++ ];
+			int val11  = encodedValue[ offSet++ ];
 			int val12  = encodedValue[ offSet++ ];
 			int val13  = encodedValue[ offSet++ ];
 			int val14  = encodedValue[ offSet++ ];
@@ -2185,60 +2184,58 @@ public class PForDecompress {
 			int val21  = encodedValue[ offSet++ ];
 
 
-			decode[ decodeOffset	 ]	 =   val1 & mask21bit ;
-			decode[ decodeOffset + 1 ]	 =   (( val2 << 11) | ( val1 >>> 21 )) & mask21bit ;
+			decode[ decodeOffset++ ]	 =   ( val1 << 11 ) >>> 11;
+			decode[ decodeOffset++ ]	 =   ( ( val2 << 22 ) >>> 11 ) | ( val1 >>> 21 );
 
-			decode[ decodeOffset + 2 ]	 =   ( val2 >> 10 ) &  mask21bit ;
-			decode[ decodeOffset + 3]	 =   (( val3 << 1) | ( val2 >>> 31 )) & mask21bit ;
+			decode[ decodeOffset++ ]	 =   ( val2 << 1 ) >>> 11;
+			decode[ decodeOffset++ ]	 =   ( ( val3 << 12 ) >>> 11 ) | ( val2 >>> 31 );
 
-			decode[ decodeOffset + 4 ]	 =   (( val4 << 12) | ( val3 >>> 20 )) & mask21bit ;
+			decode[ decodeOffset++ ]	 =   ( ( val4 << 23 ) >>> 11 ) | ( val3 >>> 20 );
 
-			decode[ decodeOffset + 5 ]	 =   ( val4 >> 9 ) &  mask21bit ;
-			decode[ decodeOffset + 6 ]	 =   (( val5 << 2 ) | ( val4 >>> 30 )) & mask21bit ;
+			decode[ decodeOffset++ ]	 =   ( val4 << 2 ) >>> 11;
+			decode[ decodeOffset++ ]	 =   ( ( val5 << 13 ) >>> 11 ) | ( val4 >>> 30 );
 
-			decode[ decodeOffset + 7 ]	 =   (( val6 << 13) | ( val5 >>> 19 )) & mask21bit ;
+			decode[ decodeOffset++ ]	 =   ( ( val6 << 24 ) >>> 11 ) | ( val5 >>> 19 );
 
-			decode[ decodeOffset + 8 ]	 =   ( val6 >> 8 ) &  mask21bit ;
-			decode[ decodeOffset + 9 ]	 =   (( val7 << 3 ) | ( val6 >>> 29 )) & mask21bit ;
+			decode[ decodeOffset++ ]	 =   ( val6 << 3 ) >>> 11;
+			decode[ decodeOffset++ ]	 =   ( ( val7 << 14 ) >>> 11 ) | ( val6 >>> 29 );
 
-			decode[ decodeOffset + 10 ]	 =   (( val8 << 14) | ( val7 >>> 18 )) & mask21bit ;
+			decode[ decodeOffset++ ]	 =   ( ( val8 << 25 ) >>> 11 ) | ( val7 >>> 18 );
 
-			decode[ decodeOffset + 11 ]	 =   ( val8 >> 7 ) &  mask21bit ;
-			decode[ decodeOffset + 12 ]	 =   (( val9 << 4 ) | ( val8 >>> 28 )) & mask21bit ;
+			decode[ decodeOffset++ ]	 =   ( val8 << 4 ) >>> 11;
+			decode[ decodeOffset++ ]	 =   ( ( val9 << 15 ) >>> 11 ) | ( val8 >>> 28 );
 
-			decode[ decodeOffset + 13 ]	 =   (( val10 << 15) | ( val9 >>> 17 )) & mask21bit ;
+			decode[ decodeOffset++ ]	 =   ( ( val10 << 26 ) >>> 11 ) | ( val9 >>> 17 );
 
-			decode[ decodeOffset + 14 ]	 =   ( val10 >> 6 ) &  mask21bit ;
-			decode[ decodeOffset + 15 ]	 =   (( val11 << 5 ) | ( val10 >>> 27 )) & mask21bit ;
+			decode[ decodeOffset++ ]	 =   ( val10 << 5 ) >>> 11;
+			decode[ decodeOffset++ ]	 =   ( ( val11 << 16 ) >>> 11 ) | ( val10 >>> 27 );
 
-			decode[ decodeOffset + 16 ]	 =   (( val12 << 16) | ( val11 >>> 16 )) & mask21bit ;
+			decode[ decodeOffset++ ]	 =   ( ( val12 << 27 ) >>> 11 ) | ( val11 >>> 16 );
 
-			decode[ decodeOffset + 17 ]	 =   ( val12 >> 5 ) &  mask21bit ;
-			decode[ decodeOffset + 18 ]	 =   (( val13 << 6 ) | ( val12 >>> 26 )) & mask21bit ;
+			decode[ decodeOffset++ ]	 =   ( val12 << 6 ) >>> 11;
+			decode[ decodeOffset++ ]	 =   ( ( val13 << 17 ) >>> 11 ) | ( val12 >>> 26 );
 
-			decode[ decodeOffset + 19 ]	 =   (( val14 << 17) | ( val13 >>> 15 )) & mask21bit ;
+			decode[ decodeOffset++ ]	 =   ( ( val14 << 28 ) >>> 11 ) | ( val13 >>> 15 );
 
-			decode[ decodeOffset + 20 ]	 =   ( val14 >> 4 ) &  mask21bit ;
-			decode[ decodeOffset + 21 ]	 =   (( val15 << 7 ) | ( val14 >>> 25 )) & mask21bit ;
+			decode[ decodeOffset++ ]	 =   ( val14 << 7 ) >>> 11;
+			decode[ decodeOffset++ ]	 =   ( ( val15 << 18 ) >>> 11 ) | ( val14 >>> 25 );
 
-			decode[ decodeOffset + 22 ]	 =   (( val16 << 18) | ( val15 >>> 14 )) & mask21bit ;
+			decode[ decodeOffset++ ]	 =   ( ( val16 << 29 ) >>> 11 ) | ( val15 >>> 14 );
 
-			decode[ decodeOffset + 23 ]	 =   ( val16 >> 3 ) &  mask21bit ;
-			decode[ decodeOffset + 24 ]	 =   (( val17 << 8 ) | ( val16 >>> 24 )) & mask21bit ;
+			decode[ decodeOffset++ ]	 =   ( val16 << 8 ) >>> 11;
+			decode[ decodeOffset++ ]	 =   ( ( val17 << 19 ) >>> 11 ) | ( val16 >>> 24 );
 
-			decode[ decodeOffset + 25 ]	 =   (( val18 << 19) | ( val17 >>> 13 )) & mask21bit ;
+			decode[ decodeOffset++ ]	 =   ( ( val18 << 30 ) >>> 11 ) | ( val17 >>> 13 );
 
-			decode[ decodeOffset + 26 ]	 =   ( val18 >> 2 ) &  mask21bit ;
-			decode[ decodeOffset + 27 ]	 =   (( val19 << 9 ) | ( val18 >>> 23 )) & mask21bit ;
+			decode[ decodeOffset++ ]	 =   ( val18 << 9 ) >>> 11;
+			decode[ decodeOffset++ ]	 =   ( ( val19 << 20 ) >>> 11 ) | ( val18 >>> 23 );
 
-			decode[ decodeOffset + 28 ]	 =   (( val20 << 20) | ( val19 >>> 12 )) & mask21bit ;
+			decode[ decodeOffset++ ]	 =   ( ( val20 << 31 ) >>> 11 ) | ( val19 >>> 12 );
 
-			decode[ decodeOffset + 29 ]	 =   ( val20 >> 1 ) &  mask21bit ;
-			decode[ decodeOffset + 30 ]	 =   (( val21 << 10) | ( val20 >>> 22 )) & mask21bit ;
+			decode[ decodeOffset++ ]	 =   ( val20 << 10 ) >>> 11;
+			decode[ decodeOffset++ ]	 =   ( ( val21 << 21 ) >>> 11 ) | ( val20 >>> 22 );
 
-			decode[ decodeOffset + 31 ]	 =   ( val21 >> 11 ) &  mask21bit ;
-
-			decodeOffset += 32;
+			decode[ decodeOffset++ ]	 =   val21 >>> 11;
 
 		}
 
@@ -2246,113 +2243,111 @@ public class PForDecompress {
 			return offSet;
 
 		int val1  = encodedValue[ offSet++ ];
-		decode[ decodeOffset	 ]	 =   val1 & mask21bit ;
+		decode[ decodeOffset   ]	 =   ( val1 << 11 ) >>> 11;
 		if( --rest == 0 ) return offSet;
 
 		int val2  = encodedValue[ offSet++ ];
-		decode[ decodeOffset + 1 ]	 =   (( val2 << 11) | ( val1 >>> 21 )) & mask21bit ;
-		if( --rest == 0 ) return offSet;
-		decode[ decodeOffset + 2 ]	 =   ( val2 >> 10 ) &  mask21bit ;
+		decode[ ++decodeOffset ]	 =   ( ( val2 << 22 ) >>> 11 ) | ( val1 >>> 21 );
 		if( --rest == 0 ) return offSet;
 
 		int val3  = encodedValue[ offSet++ ];
-		decode[ decodeOffset + 3]	 =   (( val3 << 1) | ( val2 >>> 31 )) & mask21bit ;
+		decode[ ++decodeOffset ]	 =   ( val2 << 1 ) >>> 11;
+		if( --rest == 0 ) return offSet;
+		decode[ ++decodeOffset ]	 =   ( ( val3 << 12 ) >>> 11 ) | ( val2 >>> 31 );
 		if( --rest == 0 ) return offSet;
 
 		int val4  = encodedValue[ offSet++ ];
-		decode[ decodeOffset + 4 ]	 =   (( val4 << 12) | ( val3 >>> 20 )) & mask21bit ;
+		decode[ ++decodeOffset ]	 =   ( ( val4 << 23 ) >>> 11 ) | ( val3 >>> 20 );
 		if( --rest == 0 ) return offSet;
-		decode[ decodeOffset + 5 ]	 =   ( val4 >> 9 ) &  mask21bit ;
+		decode[ ++decodeOffset ]	 =   ( val4 << 2 ) >>> 11;
 		if( --rest == 0 ) return offSet;
 
 		int val5  = encodedValue[ offSet++ ];
-		decode[ decodeOffset + 6 ]	 =   (( val5 << 2 ) | ( val4 >>> 30 )) & mask21bit ;
+		decode[ ++decodeOffset ]	 =   ( ( val5 << 13 ) >>> 11 ) | ( val4 >>> 30 );
 		if( --rest == 0 ) return offSet;
 
 		int val6  = encodedValue[ offSet++ ];
-		decode[ decodeOffset + 7 ]	 =   (( val6 << 13) | ( val5 >>> 19 )) & mask21bit ;
+		decode[ ++decodeOffset ]	 =   ( ( val6 << 24 ) >>> 11 ) | ( val5 >>> 19 );
 		if( --rest == 0 ) return offSet;
-		decode[ decodeOffset + 8 ]	 =   ( val6 >> 8 ) &  mask21bit ;
+		decode[ ++decodeOffset ]	 =   ( val6 << 3 ) >>> 11;
 		if( --rest == 0 ) return offSet;
 
 		int val7  = encodedValue[ offSet++ ];
-		decode[ decodeOffset + 9 ]	 =   (( val7 << 3 ) | ( val6 >>> 29 )) & mask21bit ;
+		decode[ ++decodeOffset ]	 =   ( ( val7 << 14 ) >>> 11 ) | ( val6 >>> 29 );
 		if( --rest == 0 ) return offSet;
 
 		int val8  = encodedValue[ offSet++ ];
-		decode[ decodeOffset + 10 ]	 =   (( val8 << 14) | ( val7 >>> 18 )) & mask21bit ;
+		decode[ ++decodeOffset ]	 =   ( ( val8 << 25 ) >>> 11 ) | ( val7 >>> 18 );
 		if( --rest == 0 ) return offSet;
-		decode[ decodeOffset + 11 ]	 =   ( val8 >> 7 ) &  mask21bit ;
+		decode[ ++decodeOffset ]	 =   ( val8 << 4 ) >>> 11;
 		if( --rest == 0 ) return offSet;
 
 		int val9  = encodedValue[ offSet++ ];
-		decode[ decodeOffset + 12 ]	 =   (( val9 << 4 ) | ( val8 >>> 28 )) & mask21bit ;
+		decode[ ++decodeOffset ]	 =   ( ( val9 << 15 ) >>> 11 ) | ( val8 >>> 28 );
 		if( --rest == 0 ) return offSet;
 
-		int val10 = encodedValue[ offSet++ ];
-		decode[ decodeOffset + 13 ]	 =   (( val10 << 15) | ( val9 >>> 17 )) & mask21bit ;
+		int val10  = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   ( ( val10 << 26 ) >>> 11 ) | ( val9 >>> 17 );
 		if( --rest == 0 ) return offSet;
-		decode[ decodeOffset + 14 ]	 =   ( val10 >> 6 ) &  mask21bit ;
+		decode[ ++decodeOffset ]	 =   ( val10 << 5 ) >>> 11;
 		if( --rest == 0 ) return offSet;
 
-		int val11 = encodedValue[ offSet++ ];
-		decode[ decodeOffset + 15 ]	 =   (( val11 << 5 ) | ( val10 >>> 27 )) & mask21bit ;
+		int val11  = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   ( ( val11 << 16 ) >>> 11 ) | ( val10 >>> 27 );
 		if( --rest == 0 ) return offSet;
 
 		int val12  = encodedValue[ offSet++ ];
-		decode[ decodeOffset + 16 ]	 =   (( val12 << 16) | ( val11 >>> 16 )) & mask21bit ;
+		decode[ ++decodeOffset ]	 =   ( ( val12 << 27 ) >>> 11 ) | ( val11 >>> 16 );
 		if( --rest == 0 ) return offSet;
-		decode[ decodeOffset + 17 ]	 =   ( val12 >> 5 ) &  mask21bit ;
+		decode[ ++decodeOffset ]	 =   ( val12 << 6 ) >>> 11;
 		if( --rest == 0 ) return offSet;
 
 		int val13  = encodedValue[ offSet++ ];
-		decode[ decodeOffset + 18 ]	 =   (( val13 << 6 ) | ( val12 >>> 26 )) & mask21bit ;
+		decode[ ++decodeOffset ]	 =   ( ( val13 << 17 ) >>> 11 ) | ( val12 >>> 26 );
 		if( --rest == 0 ) return offSet;
 
 		int val14  = encodedValue[ offSet++ ];
-		decode[ decodeOffset + 19 ]	 =   (( val14 << 17) | ( val13 >>> 15 )) & mask21bit ;
+		decode[ ++decodeOffset ]	 =   ( ( val14 << 28 ) >>> 11 ) | ( val13 >>> 15 );
 		if( --rest == 0 ) return offSet;
-		decode[ decodeOffset + 20 ]	 =   ( val14 >> 4 ) &  mask21bit ;
+		decode[ ++decodeOffset ]	 =   ( val14 << 7 ) >>> 11;
 		if( --rest == 0 ) return offSet;
 
 		int val15  = encodedValue[ offSet++ ];
-		decode[ decodeOffset + 21 ]	 =   (( val15 << 7 ) | ( val14 >>> 25 )) & mask21bit ;
+		decode[ ++decodeOffset ]	 =   ( ( val15 << 18 ) >>> 11 ) | ( val14 >>> 25 );
 		if( --rest == 0 ) return offSet;
 
 		int val16  = encodedValue[ offSet++ ];
-		decode[ decodeOffset + 22 ]	 =   (( val16 << 18) | ( val15 >>> 14 )) & mask21bit ;
+		decode[ ++decodeOffset ]	 =   ( ( val16 << 29 ) >>> 11 ) | ( val15 >>> 14 );
 		if( --rest == 0 ) return offSet;
-		decode[ decodeOffset + 23 ]	 =   ( val16 >> 3 ) &  mask21bit ;
+		decode[ ++decodeOffset ]	 =   ( val16 << 8 ) >>> 11;
 		if( --rest == 0 ) return offSet;
 
 		int val17  = encodedValue[ offSet++ ];
-		decode[ decodeOffset + 24 ]	 =   (( val17 << 8 ) | ( val16 >>> 24 )) & mask21bit ;
+		decode[ ++decodeOffset ]	 =   ( ( val17 << 19 ) >>> 11 ) | ( val16 >>> 24 );
 		if( --rest == 0 ) return offSet;
 
 		int val18  = encodedValue[ offSet++ ];
-		decode[ decodeOffset + 25 ]	 =   (( val18 << 19) | ( val17 >>> 13 )) & mask21bit ;
+		decode[ ++decodeOffset ]	 =   ( ( val18 << 30 ) >>> 11 ) | ( val17 >>> 13 );
 		if( --rest == 0 ) return offSet;
-		decode[ decodeOffset + 26 ]	 =   ( val18 >> 2 ) &  mask21bit ;
+		decode[ ++decodeOffset ]	 =   ( val18 << 9 ) >>> 11;
 		if( --rest == 0 ) return offSet;
 
 		int val19  = encodedValue[ offSet++ ];
-		decode[ decodeOffset + 27 ]	 =   (( val19 << 9 ) | ( val18 >>> 23 )) & mask21bit ;
+		decode[ ++decodeOffset ]	 =   ( ( val19 << 20 ) >>> 11 ) | ( val18 >>> 23 );
 		if( --rest == 0 ) return offSet;
 
 		int val20  = encodedValue[ offSet++ ];
-		decode[ decodeOffset + 28 ]	 =   (( val20 << 20) | ( val19 >>> 12 )) & mask21bit ;
+		decode[ ++decodeOffset ]	 =   ( ( val20 << 31 ) >>> 11 ) | ( val19 >>> 12 );
 		if( --rest == 0 ) return offSet;
-		decode[ decodeOffset + 29 ]	 =   ( val20 >> 1 ) &  mask21bit ;
+		decode[ ++decodeOffset ]	 =   ( val20 << 10 ) >>> 11;
 		if( --rest == 0 ) return offSet;
 
 		int val21  = encodedValue[ offSet++ ];
-		decode[ decodeOffset + 30 ]	 =   (( val21 << 10) | ( val20 >>> 22 )) & mask21bit ;
+		decode[ ++decodeOffset ]	 =   ( ( val21 << 21 ) >>> 11 ) | ( val20 >>> 22 );
 		return offSet;
 
 	}
 
-
-	static int mask22bit = ( 1 << 22 ) - 1;
 
 	static int fastDeCompressFor22Bit( int offSet, int[] encodedValue, int dataNum, int decodeOffset, int[] decode ){
 
@@ -2362,103 +2357,1545 @@ public class PForDecompress {
 		// block process
 		for( int  block = 0 ; block < maxBlocks ; block++ ){
 
-			int val1  = encodedValue[ offSet++ ];
-			int val2  = encodedValue[ offSet++ ];
-			int val3  = encodedValue[ offSet++ ];
-			int val4  = encodedValue[ offSet++ ];
-			int val5  = encodedValue[ offSet++ ];
-			int val6  = encodedValue[ offSet++ ];
-			int val7  = encodedValue[ offSet++ ];
-			int val8  = encodedValue[ offSet++ ];
-			int val9  = encodedValue[ offSet++ ];
+			int val1   = encodedValue[ offSet++ ];
+			int val2   = encodedValue[ offSet++ ];
+			int val3   = encodedValue[ offSet++ ];
+			int val4   = encodedValue[ offSet++ ];
+			int val5   = encodedValue[ offSet++ ];
+			int val6   = encodedValue[ offSet++ ];
+			int val7   = encodedValue[ offSet++ ];
+			int val8   = encodedValue[ offSet++ ];
+			int val9   = encodedValue[ offSet++ ];
 			int val10  = encodedValue[ offSet++ ];
 			int val11  = encodedValue[ offSet++ ];
 
-			decode[ decodeOffset	 ]	 =   val1 & mask22bit ;
-			decode[ decodeOffset + 1 ]	 =   (( val2 << 10) | ( val1 >>> 22 )) & mask22bit ;
+			decode[ decodeOffset++ ]	 =   ( val1 << 10 ) >>> 10;
+			decode[ decodeOffset++ ]	 =   ( ( val2 << 20 ) >>> 10 ) | ( val1 >>> 22 );
 
-			decode[ decodeOffset + 2 ]	 =   (( val3 << 20) | ( val2 >>> 12 )) & mask22bit ;
+			decode[ decodeOffset++ ]	 =   ( ( val3 << 30 ) >>> 10 ) | ( val2 >>> 12 );
 
-			decode[ decodeOffset + 3 ]	 =   ( val3 >> 2 ) &  mask22bit ;
-			decode[ decodeOffset + 4 ]	 =   (( val4 << 8 ) | ( val3 >>> 24 )) & mask22bit ;
+			decode[ decodeOffset++ ]	 =   ( val3 << 8 ) >>> 10;
+			decode[ decodeOffset++ ]	 =   ( ( val4 << 18 ) >>> 10 ) | ( val3 >>> 24 );
 
-			decode[ decodeOffset + 5 ]	 =   (( val5 << 18) | ( val4 >>> 14 )) & mask22bit ;
+			decode[ decodeOffset++ ]	 =   ( ( val5 << 28 ) >>> 10 ) | ( val4 >>> 14 );
 
-			decode[ decodeOffset + 6 ]	 =   ( val5 >> 4 ) &  mask22bit ;
-			decode[ decodeOffset + 7 ]	 =   (( val6 << 6) | ( val5 >>> 26 )) & mask22bit ;
+			decode[ decodeOffset++ ]	 =   ( val5 << 6 ) >>> 10;
+			decode[ decodeOffset++ ]	 =   ( ( val6 << 16 ) >>> 10 ) | ( val5 >>> 26 );
 
-			decode[ decodeOffset + 8 ]	 =   (( val7 << 16) | ( val6 >>> 16 )) & mask22bit ;
+			decode[ decodeOffset++ ]	 =   ( ( val7 << 26 ) >>> 10 ) | ( val6 >>> 16 );
 
-			decode[ decodeOffset + 9  ]	 =   ( val7 >> 6) &  mask22bit ;
-			decode[ decodeOffset + 10 ]	 =   (( val8 << 4 ) | ( val7 >>> 28 )) & mask22bit ;
+			decode[ decodeOffset++ ]	 =   ( val7 << 4 ) >>> 10;
+			decode[ decodeOffset++ ]	 =   ( ( val8 << 14 ) >>> 10 ) | ( val7 >>> 28 );
 
-			decode[ decodeOffset + 11 ]	 =   (( val9 << 14) | ( val8 >>> 18 )) & mask22bit ;
+			decode[ decodeOffset++ ]	 =   ( ( val9 << 24 ) >>> 10 ) | ( val8 >>> 18 );
 
-			decode[ decodeOffset + 12 ]	 =   ( val9 >> 8 ) &  mask22bit ;
-			decode[ decodeOffset + 13 ]	 =   (( val10 << 2 ) | ( val9 >>> 30 )) & mask22bit ;
+			decode[ decodeOffset++ ]	 =   ( val9 << 2 ) >>> 10;
+			decode[ decodeOffset++ ]	 =   ( ( val10 << 12 ) >>> 10 ) | ( val9 >>> 30 );
 
-			decode[ decodeOffset + 14 ]	 =   (( val11 << 12) | ( val10 >>> 20 )) & mask22bit ;
+			decode[ decodeOffset++ ]	 =   ( ( val11 << 22 ) >>> 10 ) | ( val10 >>> 20 );
 
-			decode[ decodeOffset + 15 ]	 =   ( val11 >> 10 ) &  mask22bit ;
+			decode[ decodeOffset++ ]	 =   val11 >>> 10;
 
-			decodeOffset += 16;
 		}
 
 		if( rest == 0 )
-			return offSet;;
+			return offSet;
 
 		int val1  = encodedValue[ offSet++ ];
-		decode[ decodeOffset	 ]	 =   val1 & mask22bit ;
+		decode[ decodeOffset++ ]	 =   ( val1 << 10 ) >>> 10;
 		if( --rest == 0 ) return offSet;
 
 		int val2  = encodedValue[ offSet++ ];
-		decode[ decodeOffset + 1 ]	 =   (( val2 << 10) | ( val1 >>> 22 )) & mask22bit ;
+		decode[ decodeOffset++ ]	 =   (( val2 << 20 ) >>> 10 ) | ( val1 >>> 22 );
 		if( --rest == 0 ) return offSet;
 
 		int val3  = encodedValue[ offSet++ ];
-		decode[ decodeOffset + 2 ]	 =   (( val3 << 20) | ( val2 >>> 12 )) & mask22bit ;
+		decode[ decodeOffset++ ]	 =   (( val3 << 30 ) >>> 10 ) | ( val2 >>> 12 );
 		if( --rest == 0 ) return offSet;
-		decode[ decodeOffset + 3 ]	 =   ( val3 >> 2 ) &  mask22bit ;
+		decode[ decodeOffset++ ]	 =   ( val3 << 8 ) >>> 10;
 		if( --rest == 0 ) return offSet;
 
 		int val4  = encodedValue[ offSet++ ];
-		decode[ decodeOffset + 4 ]	 =   (( val4 << 8 ) | ( val3 >>> 24 )) & mask22bit ;
+		decode[ decodeOffset++ ]	 =   (( val4 << 18 ) >>> 10 ) | ( val3 >>> 24 );
 		if( --rest == 0 ) return offSet;
 
 		int val5  = encodedValue[ offSet++ ];
-		decode[ decodeOffset + 5 ]	 =   (( val5 << 18) | ( val4 >>> 14 )) & mask22bit ;
+		decode[ decodeOffset++ ]	 =   (( val5 << 28 ) >>> 10 ) | ( val4 >>> 14 );
 		if( --rest == 0 ) return offSet;
-		decode[ decodeOffset + 6 ]	 =   ( val5 >> 4 ) &  mask22bit ;
+		decode[ decodeOffset++ ]	 =   ( val5 << 6 ) >>> 10;
 		if( --rest == 0 ) return offSet;
 
 		int val6  = encodedValue[ offSet++ ];
-		decode[ decodeOffset + 7 ]	 =   (( val6 << 6) | ( val5 >>> 26 )) & mask22bit ;
+		decode[ decodeOffset++ ]	 =   (( val6 << 16 ) >>> 10 ) | ( val5 >>> 26 );
 		if( --rest == 0 ) return offSet;
 
 		int val7  = encodedValue[ offSet++ ];
-		decode[ decodeOffset + 8 ]	 =   (( val7 << 16) | ( val6 >>> 16 )) & mask22bit ;
+		decode[ decodeOffset++ ]	 =   (( val7 << 26 ) >>> 10 ) | ( val6 >>> 16 );
 		if( --rest == 0 ) return offSet;
-		decode[ decodeOffset + 9  ]	 =   ( val7 >> 6) &  mask22bit ;
+		decode[ decodeOffset++ ]	 =   ( val7 << 4 ) >>> 10;
 		if( --rest == 0 ) return offSet;
 
 		int val8  = encodedValue[ offSet++ ];
-		decode[ decodeOffset + 10 ]	 =   (( val8 << 4 ) | ( val7 >>> 28 )) & mask22bit ;
+		decode[ decodeOffset++ ]	 =   (( val8 << 14 ) >>> 10 ) | ( val7 >>> 28 );
 		if( --rest == 0 ) return offSet;
 
 		int val9  = encodedValue[ offSet++ ];
-		decode[ decodeOffset + 11 ]	 =   (( val9 << 14) | ( val8 >>> 18 )) & mask22bit ;
+		decode[ decodeOffset++ ]	 =   (( val9 << 24 ) >>> 10 ) | ( val8 >>> 18 );
 		if( --rest == 0 ) return offSet;
-		decode[ decodeOffset + 12 ]	 =   ( val9 >> 8 ) &  mask22bit ;
+		decode[ decodeOffset++ ]	 =   ( val9 << 2 ) >>> 10;
 		if( --rest == 0 ) return offSet;
 
 		int val10  = encodedValue[ offSet++ ];
-		decode[ decodeOffset + 13 ]	 =   (( val10 << 2 ) | ( val9 >>> 30 )) & mask22bit ;
+		decode[ decodeOffset++ ]	 =   (( val10 << 12 ) >>> 10 ) | ( val9 >>> 30 );
 		if( --rest == 0 ) return offSet;
 
 		int val11  = encodedValue[ offSet++ ];
-		decode[ decodeOffset + 14 ]	 =   (( val11 << 12) | ( val10 >>> 20 )) & mask22bit ;
+		decode[ decodeOffset++ ]	 =   (( val11 << 22 ) >>> 10 ) | ( val10 >>> 20 );
 		return offSet;
 
+	}
+
+	static int fastDeCompressFor23Bit( int offSet, int[] encodedValue, int dataNum, int decodeOffset, int[] decode ){
+
+		int maxBlocks	=  dataNum  >>  5;
+		int rest		=  dataNum  %  32;
+
+		// block process
+		for( int  block = 0 ; block < maxBlocks ; block++ ){
+
+			int val1   = encodedValue[ offSet++ ];
+			int val2   = encodedValue[ offSet++ ];
+			int val3   = encodedValue[ offSet++ ];
+			int val4   = encodedValue[ offSet++ ];
+			int val5   = encodedValue[ offSet++ ];
+			int val6   = encodedValue[ offSet++ ];
+			int val7   = encodedValue[ offSet++ ];
+			int val8   = encodedValue[ offSet++ ];
+			int val9   = encodedValue[ offSet++ ];
+			int val10  = encodedValue[ offSet++ ];
+			int val11  = encodedValue[ offSet++ ];
+			int val12  = encodedValue[ offSet++ ];
+			int val13  = encodedValue[ offSet++ ];
+			int val14  = encodedValue[ offSet++ ];
+			int val15  = encodedValue[ offSet++ ];
+			int val16  = encodedValue[ offSet++ ];
+			int val17  = encodedValue[ offSet++ ];
+			int val18  = encodedValue[ offSet++ ];
+			int val19  = encodedValue[ offSet++ ];
+			int val20  = encodedValue[ offSet++ ];
+			int val21  = encodedValue[ offSet++ ];
+			int val22  = encodedValue[ offSet++ ];
+			int val23  = encodedValue[ offSet++ ];
+
+			decode[ decodeOffset++ ]	 =   ( val1 << 9 ) >>> 9;
+			decode[ decodeOffset++ ]	 =   (( val2 << 18 ) >>> 9 ) | ( val1 >>> 23 );
+
+			decode[ decodeOffset++ ]	 =   (( val3 << 27 ) >>> 9 ) | ( val2 >>> 14 );
+
+			decode[ decodeOffset++ ]	 =   ( val3 << 4 ) >>> 9;
+			decode[ decodeOffset++ ]	 =   (( val4 << 13 ) >>> 9 ) | ( val3 >>> 28 );
+
+			decode[ decodeOffset++ ]	 =   (( val5 << 22 ) >>> 9 ) | ( val4 >>> 19 );
+
+			decode[ decodeOffset++ ]	 =   (( val6 << 31 ) >>> 9 ) | ( val5 >>> 10 );
+
+			decode[ decodeOffset++ ]	 =   ( val6 << 8 ) >>> 9;
+			decode[ decodeOffset++ ]	 =   (( val7 << 17 ) >>> 9 ) | ( val6 >>> 24 );
+
+			decode[ decodeOffset++ ]	 =   (( val8 << 26 ) >>> 9 ) | ( val7 >>> 15 );
+
+			decode[ decodeOffset++ ]	 =   ( val8 << 3 ) >>> 9;
+			decode[ decodeOffset++ ]	 =   (( val9 << 12 ) >>> 9 ) | ( val8 >>> 29 );
+
+			decode[ decodeOffset++ ]	 =   (( val10 << 21 ) >>> 9 ) | ( val9 >>> 20 );
+
+			decode[ decodeOffset++ ]	 =   (( val11 << 30 ) >>> 9 ) | ( val10 >>> 11 );
+
+			decode[ decodeOffset++ ]	 =   ( val11 << 7 ) >>> 9;
+			decode[ decodeOffset++ ]	 =   (( val12 << 16 ) >>> 9 ) | ( val11 >>> 25 );
+
+			decode[ decodeOffset++ ]	 =   (( val13 << 25 ) >>> 9 ) | ( val12 >>> 16 );
+
+			decode[ decodeOffset++ ]	 =   ( val13 << 2 ) >>> 9;
+			decode[ decodeOffset++ ]	 =   (( val14 << 11 ) >>> 9 ) | ( val13 >>> 30 );
+
+			decode[ decodeOffset++ ]	 =   (( val15 << 20 ) >>> 9 ) | ( val14 >>> 21 );
+
+			decode[ decodeOffset++ ]	 =   (( val16 << 29 ) >>> 9 ) | ( val15 >>> 12 );
+
+			decode[ decodeOffset++ ]	 =   ( val16 << 6 ) >>> 9 ;
+			decode[ decodeOffset++ ]	 =   (( val17 << 15 ) >>> 9 ) | ( val16 >>> 26 );
+
+			decode[ decodeOffset++ ]	 =   (( val18 << 24 ) >>> 9 ) | ( val17 >>> 17 );
+
+			decode[ decodeOffset++ ]	 =   ( val18 << 1 ) >>> 9;
+			decode[ decodeOffset++ ]	 =   (( val19 << 10 ) >>> 9 ) | ( val18 >>> 31 );
+
+			decode[ decodeOffset++ ]	 =   (( val20 << 19 ) >>> 9 ) | ( val19 >>> 22 );
+
+			decode[ decodeOffset++ ]	 =   (( val21 << 28 ) >>> 9 ) | ( val20 >>> 13 );
+
+			decode[ decodeOffset++ ]	 =   ( val21 << 5 ) >>> 9;
+			decode[ decodeOffset++ ]	 =   (( val22 << 14 ) >>> 9 ) | ( val21 >>> 27 );
+
+			decode[ decodeOffset++ ]	 =   (( val23 << 23 ) >>> 9 ) | ( val22 >>> 18 );
+
+			decode[ decodeOffset++ ]	 =   val23 >>> 9;
+
+		}
+
+		if( rest == 0 )
+			return offSet;
+
+		int val1  = encodedValue[ offSet++ ];
+		decode[ decodeOffset   ]	 =   ( val1 << 9 ) >>> 9;
+		if( --rest == 0 ) return offSet;
+
+		int val2  = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val2 << 18 ) >>> 9 ) | ( val1 >>> 23 );
+		if( --rest == 0 ) return offSet;
+
+		int val3  = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val3 << 27 ) >>> 9 ) | ( val2 >>> 14 );
+		if( --rest == 0 ) return offSet;
+		decode[ ++decodeOffset ]	 =   ( val3 << 4 ) >>> 9;
+		if( --rest == 0 ) return offSet;
+
+		int val4  = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val4 << 13 ) >>> 9 ) | ( val3 >>> 28 );
+		if( --rest == 0 ) return offSet;
+
+		int val5  = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val5 << 22 ) >>> 9 ) | ( val4 >>> 19 );
+		if( --rest == 0 ) return offSet;
+
+		int val6  = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val6 << 31 ) >>> 9 ) | ( val5 >>> 10 );
+		if( --rest == 0 ) return offSet;
+		decode[ ++decodeOffset ]	 =   ( val6 << 8 ) >>> 9;
+		if( --rest == 0 ) return offSet;
+
+		int val7  = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val7 << 17 ) >>> 9 ) | ( val6 >>> 24 );
+		if( --rest == 0 ) return offSet;
+
+		int val8  = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val8 << 26 ) >>> 9 ) | ( val7 >>> 15 );
+		if( --rest == 0 ) return offSet;
+		decode[ ++decodeOffset ]	 =   ( val8 << 3 ) >>> 9;
+		if( --rest == 0 ) return offSet;
+
+		int val9  = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val9 << 12 ) >>> 9 ) | ( val8 >>> 29 );
+		if( --rest == 0 ) return offSet;
+
+		int val10  = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val10 << 21 ) >>> 9 ) | ( val9 >>> 20 );
+		if( --rest == 0 ) return offSet;
+
+		int val11  = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val11 << 30 ) >>> 9 ) | ( val10 >>> 11 );
+		if( --rest == 0 ) return offSet;
+		decode[ ++decodeOffset ]	 =   ( val11 << 7 ) >>> 9;
+		if( --rest == 0 ) return offSet;
+
+		int val12  = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val12 << 16 ) >>> 9 ) | ( val11 >>> 25 );
+		if( --rest == 0 ) return offSet;
+
+		int val13  = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val13 << 25 ) >>> 9 ) | ( val12 >>> 16 );
+		if( --rest == 0 ) return offSet;
+		decode[ ++decodeOffset ]	 =   ( val13 << 2 ) >>> 9;
+		if( --rest == 0 ) return offSet;
+
+		int val14  = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val14 << 11 ) >>> 9 ) | ( val13 >>> 30 );
+		if( --rest == 0 ) return offSet;
+
+		int val15  = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val15 << 20 ) >>> 9 ) | ( val14 >>> 21 );
+		if( --rest == 0 ) return offSet;
+
+		int val16  = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val16 << 29 ) >>> 9 ) | ( val15 >>> 12 );
+		if( --rest == 0 ) return offSet;
+		decode[ ++decodeOffset ]	 =   ( val16 << 6 ) >>> 9 ;
+		if( --rest == 0 ) return offSet;
+
+		int val17  = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val17 << 15 ) >>> 9 ) | ( val16 >>> 26 );
+		if( --rest == 0 ) return offSet;
+
+		int val18  = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val18 << 24 ) >>> 9 ) | ( val17 >>> 17 );
+		if( --rest == 0 ) return offSet;
+		decode[ ++decodeOffset ]	 =   ( val18 << 1 ) >>> 9;
+		if( --rest == 0 ) return offSet;
+
+		int val19  = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val19 << 10 ) >>> 9 ) | ( val18 >>> 31 );
+		if( --rest == 0 ) return offSet;
+
+		int val20  = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val20 << 19 ) >>> 9 ) | ( val19 >>> 22 );
+		if( --rest == 0 ) return offSet;
+
+		int val21  = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val21 << 28 ) >>> 9 ) | ( val20 >>> 13 );
+		if( --rest == 0 ) return offSet;
+		decode[ ++decodeOffset ]	 =   ( val21 << 5 ) >>> 9;
+		if( --rest == 0 ) return offSet;
+
+		int val22  = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val22 << 14 ) >>> 9 ) | ( val21 >>> 27 );
+		if( --rest == 0 ) return offSet;
+
+		int val23  = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val23 << 23 ) >>> 9 ) | ( val22 >>> 18 );
+		return offSet;
+
+	}
+
+
+	static int fastDeCompressFor24Bit( int offSet, int[] encodedValue, int dataNum, int decodeOffset, int[] decode ){
+
+		int maxBlocks	=  dataNum  >> 2;
+		int rest		=  dataNum  %  4;
+
+		// block process
+		for( int  block = 0 ; block < maxBlocks ; block++ ){
+
+			int val1   = encodedValue[ offSet++ ];
+			int val2   = encodedValue[ offSet++ ];
+			int val3   = encodedValue[ offSet++ ];
+
+			decode[ decodeOffset++ ]	 =   ( val1 << 8 ) >>> 8;
+			decode[ decodeOffset++ ]	 =   ( ( val2 << 16 ) >>> 8 ) | ( val1 >>> 24 );
+
+			decode[ decodeOffset++ ]	 =   ( ( val3 << 24 ) >>> 10 ) | ( val2 >>> 16 );
+
+			decode[ decodeOffset++ ]	 =   val3 >>> 8;
+
+		}
+
+		if( rest == 0 )
+			return offSet;
+
+		int val1   = encodedValue[ offSet++ ];
+		decode[  decodeOffset  ]	 =   ( val1 << 8 ) >>> 8;
+		if( --rest == 0 ) return offSet;
+
+		int val2   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   ( ( val2 << 16 ) >>> 8 ) | ( val1 >>> 24 );
+		if( --rest == 0 ) return offSet;
+
+		int val3   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   ( ( val3 << 24 ) >>> 10 ) | ( val2 >>> 16 );
+		return offSet;
+
+	}
+
+	static int fastDeCompressFor25Bit( int offSet, int[] encodedValue, int dataNum, int decodeOffset, int[] decode ){
+
+		int maxBlocks	=  dataNum  >>  5;
+		int rest		=  dataNum  %  32;
+
+		// block process
+		for( int  block = 0 ; block < maxBlocks ; block++ ){
+
+			int val1   = encodedValue[ offSet++ ];
+			int val2   = encodedValue[ offSet++ ];
+			int val3   = encodedValue[ offSet++ ];
+			int val4   = encodedValue[ offSet++ ];
+			int val5   = encodedValue[ offSet++ ];
+			int val6   = encodedValue[ offSet++ ];
+			int val7   = encodedValue[ offSet++ ];
+			int val8   = encodedValue[ offSet++ ];
+			int val9   = encodedValue[ offSet++ ];
+			int val10  = encodedValue[ offSet++ ];
+			int val11  = encodedValue[ offSet++ ];
+			int val12  = encodedValue[ offSet++ ];
+			int val13  = encodedValue[ offSet++ ];
+			int val14  = encodedValue[ offSet++ ];
+			int val15  = encodedValue[ offSet++ ];
+			int val16  = encodedValue[ offSet++ ];
+			int val17  = encodedValue[ offSet++ ];
+			int val18  = encodedValue[ offSet++ ];
+			int val19  = encodedValue[ offSet++ ];
+			int val20  = encodedValue[ offSet++ ];
+			int val21  = encodedValue[ offSet++ ];
+			int val22  = encodedValue[ offSet++ ];
+			int val23  = encodedValue[ offSet++ ];
+			int val24  = encodedValue[ offSet++ ];
+			int val25  = encodedValue[ offSet++ ];
+
+			decode[ decodeOffset++ ]	 =   ( val1 << 7 ) >>> 7;
+			decode[ decodeOffset++ ]	 =   (( val2 << 14 ) >>> 7 ) | ( val1 >>> 25 );
+
+			decode[ decodeOffset++ ]	 =   (( val3 << 21 ) >>> 7 ) | ( val2 >>> 18 );
+
+			decode[ decodeOffset++ ]	 =   (( val4 << 28 ) >>> 7 ) | ( val3 >>> 11 );
+
+			decode[ decodeOffset++ ]	 =   ( val4 << 3 ) >>> 9;
+			decode[ decodeOffset++ ]	 =   (( val5 << 10 ) >>> 7 ) | ( val4 >>> 29 );
+
+			decode[ decodeOffset++ ]	 =   (( val6 << 17 ) >>> 7 ) | ( val5 >>> 22 );
+
+			decode[ decodeOffset++ ]	 =   (( val7 << 24 ) >>> 7 ) | ( val6 >>> 15 );
+
+			decode[ decodeOffset++ ]	 =   (( val8 << 31 ) >>> 7 ) | ( val7 >>> 8 );
+
+			decode[ decodeOffset++ ]	 =   ( val8 << 6 ) >>> 7;
+			decode[ decodeOffset++ ]	 =   (( val9 << 13 ) >>> 7 ) | ( val8 >>> 26 );
+
+			decode[ decodeOffset++ ]	 =   (( val10 << 20 ) >>> 7 ) | ( val9 >>> 19 );
+
+			decode[ decodeOffset++ ]	 =   (( val11 << 27 ) >>> 7 ) | ( val10 >>> 12 );
+
+			decode[ decodeOffset++ ]	 =   ( val11 << 2 ) >>> 7;
+			decode[ decodeOffset++ ]	 =   (( val12 << 9  ) >>> 7 ) | ( val11 >>> 30 );
+
+			decode[ decodeOffset++ ]	 =   (( val13 << 16 ) >>> 7 ) | ( val12 >>> 23 );
+
+			decode[ decodeOffset++ ]	 =   (( val14 << 23 ) >>> 7 ) | ( val13 >>> 16 );
+
+			decode[ decodeOffset++ ]	 =   (( val15 << 30 ) >>> 7 ) | ( val14 >>> 9 );
+
+			decode[ decodeOffset++ ]	 =   (( val15 << 5 ) >>> 7 );
+			decode[ decodeOffset++ ]	 =   (( val16 << 12 ) >>> 7 ) | ( val15 >>> 27 );
+
+			decode[ decodeOffset++ ]	 =   (( val17 << 19 ) >>> 7 ) | ( val16 >>> 20 );
+
+			decode[ decodeOffset++ ]	 =   (( val18 << 26 ) >>> 7 ) | ( val17 >>> 13 );
+
+			decode[ decodeOffset++ ]	 =   ( val18 << 1 ) >>> 7;
+			decode[ decodeOffset++ ]	 =   (( val19 << 8 ) >>> 7 ) | ( val18 >>> 31 );
+
+			decode[ decodeOffset++ ]	 =   (( val20 << 15 ) >>> 7 ) | ( val19 >>> 24 );
+
+			decode[ decodeOffset++ ]	 =   (( val21 << 22 ) >>> 7 ) | ( val20 >>> 17 );
+
+			decode[ decodeOffset++ ]	 =   (( val22 << 29 ) >>> 7 ) | ( val21 >>> 10 );
+
+			decode[ decodeOffset++ ]	 =   ( val22 << 4 ) >>> 7;
+			decode[ decodeOffset++ ]	 =   (( val23 << 11 ) >>> 7 ) | ( val22 >>> 28 );
+
+			decode[ decodeOffset++ ]	 =   (( val24 << 18 ) >>> 7 ) | ( val23 >>> 21 );
+
+			decode[ decodeOffset++ ]	 =   (( val25 << 25 ) >>> 7 ) | ( val24 >>> 14 );
+
+			decode[ decodeOffset++ ]	 =   val25 >>> 7;
+
+		}
+
+		if( rest == 0 )
+			return offSet;
+
+		int val1   = encodedValue[ offSet++ ];
+		decode[  decodeOffset  ]	 =   ( val1 << 7 ) >>> 7;
+		if( --rest == 0 ) return offSet;
+
+		int val2   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val2 << 14 ) >>> 7 ) | ( val1 >>> 25 );
+		if( --rest == 0 ) return offSet;
+
+		int val3   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val3 << 21 ) >>> 7 ) | ( val2 >>> 18 );
+		if( --rest == 0 ) return offSet;
+
+		int val4   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val4 << 28 ) >>> 7 ) | ( val3 >>> 11 );
+		if( --rest == 0 ) return offSet;
+		decode[ ++decodeOffset ]	 =   ( val4 << 3 ) >>> 9;
+		if( --rest == 0 ) return offSet;
+
+		int val5   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val5 << 10 ) >>> 7 ) | ( val4 >>> 29 );
+		if( --rest == 0 ) return offSet;
+
+		int val6   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val6 << 17 ) >>> 7 ) | ( val5 >>> 22 );
+		if( --rest == 0 ) return offSet;
+
+		int val7   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val7 << 24 ) >>> 7 ) | ( val6 >>> 15 );
+		if( --rest == 0 ) return offSet;
+
+		int val8   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val8 << 31 ) >>> 7 ) | ( val7 >>> 8 );
+		if( --rest == 0 ) return offSet;
+		decode[ ++decodeOffset ]	 =   ( val8 << 6 ) >>> 7;
+		if( --rest == 0 ) return offSet;
+
+		int val9   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val9 << 13 ) >>> 7 ) | ( val8 >>> 26 );
+		if( --rest == 0 ) return offSet;
+
+		int val10   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val10 << 20 ) >>> 7 ) | ( val9 >>> 19 );
+		if( --rest == 0 ) return offSet;
+
+		int val11   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val11 << 27 ) >>> 7 ) | ( val10 >>> 12 );
+		if( --rest == 0 ) return offSet;
+		decode[ ++decodeOffset ]	 =   ( val11 << 2 ) >>> 7;
+		if( --rest == 0 ) return offSet;
+
+		int val12   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val12 << 9  ) >>> 7 ) | ( val11 >>> 30 );
+		if( --rest == 0 ) return offSet;
+
+		int val13   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val13 << 16 ) >>> 7 ) | ( val12 >>> 23 );
+		if( --rest == 0 ) return offSet;
+
+		int val14   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val14 << 23 ) >>> 7 ) | ( val13 >>> 16 );
+		if( --rest == 0 ) return offSet;
+
+		int val15   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val15 << 30 ) >>> 7 ) | ( val14 >>> 9 );
+		if( --rest == 0 ) return offSet;
+		decode[ ++decodeOffset ]	 =   (( val15 << 5 ) >>> 7 );
+		if( --rest == 0 ) return offSet;
+
+		int val16   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val16 << 12 ) >>> 7 ) | ( val15 >>> 27 );
+		if( --rest == 0 ) return offSet;
+
+		int val17   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val17 << 19 ) >>> 7 ) | ( val16 >>> 20 );
+		if( --rest == 0 ) return offSet;
+
+		int val18   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val18 << 26 ) >>> 7 ) | ( val17 >>> 13 );
+		if( --rest == 0 ) return offSet;
+		decode[ ++decodeOffset ]	 =   ( val18 << 1 ) >>> 7;
+		if( --rest == 0 ) return offSet;
+
+		int val19   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val19 << 8 ) >>> 7 ) | ( val18 >>> 31 );
+		if( --rest == 0 ) return offSet;
+
+		int val20   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val20 << 15 ) >>> 7 ) | ( val19 >>> 24 );
+		if( --rest == 0 ) return offSet;
+
+		int val21   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val21 << 22 ) >>> 7 ) | ( val20 >>> 17 );
+		if( --rest == 0 ) return offSet;
+
+		int val22   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val22 << 29 ) >>> 7 ) | ( val21 >>> 10 );
+		if( --rest == 0 ) return offSet;
+		decode[ ++decodeOffset ]	 =   ( val22 << 4 ) >>> 7;
+		if( --rest == 0 ) return offSet;
+
+		int val23   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val23 << 11 ) >>> 7 ) | ( val22 >>> 28 );
+		if( --rest == 0 ) return offSet;
+
+		int val24   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val24 << 18 ) >>> 7 ) | ( val23 >>> 21 );
+		if( --rest == 0 ) return offSet;
+
+		int val25   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val25 << 25 ) >>> 7 ) | ( val24 >>> 14 );
+		return offSet;
+
+	}
+
+
+	static int fastDeCompressFor26Bit( int offSet, int[] encodedValue, int dataNum, int decodeOffset, int[] decode ){
+
+		int maxBlocks	=  dataNum  >>  4;
+		int rest		=  dataNum  %  16;
+
+		// block process
+		for( int  block = 0 ; block < maxBlocks ; block++ ){
+
+			int val1   = encodedValue[ offSet++ ];
+			int val2   = encodedValue[ offSet++ ];
+			int val3   = encodedValue[ offSet++ ];
+			int val4   = encodedValue[ offSet++ ];
+			int val5   = encodedValue[ offSet++ ];
+			int val6   = encodedValue[ offSet++ ];
+			int val7   = encodedValue[ offSet++ ];
+			int val8   = encodedValue[ offSet++ ];
+			int val9   = encodedValue[ offSet++ ];
+			int val10  = encodedValue[ offSet++ ];
+			int val11  = encodedValue[ offSet++ ];
+			int val12  = encodedValue[ offSet++ ];
+			int val13  = encodedValue[ offSet++ ];
+
+			decode[ decodeOffset++ ]	 =   ( val1 << 6 ) >>> 6;
+			decode[ decodeOffset++ ]	 =   ( ( val2 << 12 ) >>> 6 ) | ( val1 >>> 26 );
+
+			decode[ decodeOffset++ ]	 =   ( ( val3 << 18 ) >>> 6 ) | ( val2 >>> 20 );
+
+			decode[ decodeOffset++ ]	 =   ( ( val4 << 24 ) >>> 6 ) | ( val3 >>> 14 );
+
+			decode[ decodeOffset++ ]	 =   ( ( val5 << 30 ) >>> 6 ) | ( val4 >>> 8 );
+
+			decode[ decodeOffset++ ]	 =   ( val5 << 4 ) >>> 6;
+			decode[ decodeOffset++ ]	 =   ( ( val6 << 10 ) >>> 6 ) | ( val5 >>> 28 );
+
+			decode[ decodeOffset++ ]	 =   ( ( val7 << 16 ) >>> 6 ) | ( val6 >>> 22 );
+
+			decode[ decodeOffset++ ]	 =   ( ( val8 << 22 ) >>> 6 ) | ( val7 >>> 16 );
+
+			decode[ decodeOffset++ ]	 =   ( ( val9 << 28 ) >>> 6 ) | ( val8 >>> 10 );
+
+			decode[ decodeOffset++ ]	 =   ( val9 << 2 ) >>> 6;
+			decode[ decodeOffset++ ]	 =   ( ( val10 << 8 ) >>> 6 ) | ( val9 >>> 30 );
+
+			decode[ decodeOffset++ ]	 =   ( ( val11 << 14 ) >>> 6 ) | ( val10 >>> 24 );
+
+			decode[ decodeOffset++ ]	 =   ( ( val12 << 20 ) >>> 6 ) | ( val11 >>> 18 );
+
+			decode[ decodeOffset++ ]	 =   ( ( val13 << 26 ) >>> 6 ) | ( val12 >>> 12 );
+			decode[ decodeOffset++ ]	 =   val13 >>> 6;
+
+		}
+
+		if( rest == 0 )
+			return offSet;
+
+		int val1   = encodedValue[ offSet++ ];
+		decode[  decodeOffset  ]	 =   ( val1 << 6 ) >>> 6;
+		if( --rest == 0 ) return offSet;
+
+		int val2   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   ( ( val2 << 12 ) >>> 6 ) | ( val1 >>> 26 );
+		if( --rest == 0 ) return offSet;
+
+		int val3   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   ( ( val3 << 18 ) >>> 6 ) | ( val2 >>> 20 );
+		if( --rest == 0 ) return offSet;
+
+		int val4   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   ( ( val4 << 24 ) >>> 6 ) | ( val3 >>> 14 );
+		if( --rest == 0 ) return offSet;
+
+		int val5   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   ( ( val5 << 30 ) >>> 6 ) | ( val4 >>> 8 );
+		if( --rest == 0 ) return offSet;
+		decode[ ++decodeOffset ]	 =   ( val5 << 4 ) >>> 6;
+		if( --rest == 0 ) return offSet;
+
+		int val6   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   ( ( val6 << 10 ) >>> 6 ) | ( val5 >>> 28 );
+		if( --rest == 0 ) return offSet;
+
+		int val7   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   ( ( val7 << 16 ) >>> 6 ) | ( val6 >>> 22 );
+		if( --rest == 0 ) return offSet;
+
+		int val8   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   ( ( val8 << 22 ) >>> 6 ) | ( val7 >>> 16 );
+		if( --rest == 0 ) return offSet;
+
+		int val9   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   ( ( val9 << 28 ) >>> 6 ) | ( val8 >>> 10 );
+		if( --rest == 0 ) return offSet;
+		decode[ ++decodeOffset ]	 =   ( val9 << 2 ) >>> 6;
+		if( --rest == 0 ) return offSet;
+
+		int val10   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   ( ( val10 << 8 ) >>> 6 ) | ( val9 >>> 30 );
+		if( --rest == 0 ) return offSet;
+
+		int val11   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   ( ( val11 << 14 ) >>> 6 ) | ( val10 >>> 24 );
+		if( --rest == 0 ) return offSet;
+
+		int val12   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   ( ( val12 << 20 ) >>> 6 ) | ( val11 >>> 18 );
+		if( --rest == 0 ) return offSet;
+
+		int val13   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   ( ( val13 << 26 ) >>> 6 ) | ( val12 >>> 12 );
+		return offSet;
+
+	}
+
+	static int fastDeCompressFor27Bit( int offSet, int[] encodedValue, int dataNum, int decodeOffset, int[] decode ){
+
+		int maxBlocks	=  dataNum  >>  5;
+		int rest		=  dataNum  %  32;
+
+		// block process
+		for( int  block = 0 ; block < maxBlocks ; block++ ){
+
+			int val1   = encodedValue[ offSet++ ];
+			int val2   = encodedValue[ offSet++ ];
+			int val3   = encodedValue[ offSet++ ];
+			int val4   = encodedValue[ offSet++ ];
+			int val5   = encodedValue[ offSet++ ];
+			int val6   = encodedValue[ offSet++ ];
+			int val7   = encodedValue[ offSet++ ];
+			int val8   = encodedValue[ offSet++ ];
+			int val9   = encodedValue[ offSet++ ];
+			int val10  = encodedValue[ offSet++ ];
+			int val11  = encodedValue[ offSet++ ];
+			int val12  = encodedValue[ offSet++ ];
+			int val13  = encodedValue[ offSet++ ];
+			int val14  = encodedValue[ offSet++ ];
+			int val15  = encodedValue[ offSet++ ];
+			int val16  = encodedValue[ offSet++ ];
+			int val17  = encodedValue[ offSet++ ];
+			int val18  = encodedValue[ offSet++ ];
+			int val19  = encodedValue[ offSet++ ];
+			int val20  = encodedValue[ offSet++ ];
+			int val21  = encodedValue[ offSet++ ];
+			int val22  = encodedValue[ offSet++ ];
+			int val23  = encodedValue[ offSet++ ];
+			int val24  = encodedValue[ offSet++ ];
+			int val25  = encodedValue[ offSet++ ];
+			int val26  = encodedValue[ offSet++ ];
+			int val27  = encodedValue[ offSet++ ];
+
+			decode[ decodeOffset++ ]	 =   ( val1 << 5 ) >>> 5;
+			decode[ decodeOffset++ ]	 =   (( val2 << 10 ) >>> 5 ) | ( val1 >>> 27 );
+
+			decode[ decodeOffset++ ]	 =   (( val3 << 15 ) >>> 5 ) | ( val2 >>> 22 );
+
+			decode[ decodeOffset++ ]	 =   (( val4 << 20 ) >>> 5 ) | ( val3 >>> 17 );
+
+			decode[ decodeOffset++ ]	 =   (( val5 << 25 ) >>> 5 ) | ( val4 >>> 12 );
+
+			decode[ decodeOffset++ ]	 =   (( val6 << 30 ) >>> 5 ) | ( val5 >>> 7 );
+
+			decode[ decodeOffset++ ]	 =   ( val6 << 3 ) >>> 5;
+
+			decode[ decodeOffset++ ]	 =   (( val7 << 8 ) >>> 5 ) | ( val6 >>> 29 );
+
+			decode[ decodeOffset++ ]	 =   (( val8 << 13 ) >>> 5 ) | ( val7 >>> 24 );
+
+			decode[ decodeOffset++ ]	 =   (( val9 << 18 ) >>> 5 ) | ( val8 >>> 19 );
+
+			decode[ decodeOffset++ ]	 =   (( val10 << 23 ) >>> 5 ) | ( val9 >>> 14 );
+
+			decode[ decodeOffset++ ]	 =   (( val11 << 28 ) >>> 5 ) | ( val10 >>> 9 );
+
+			decode[ decodeOffset++ ]	 =   ( val11 << 1 ) >>> 5;
+			decode[ decodeOffset++ ]	 =   (( val12 << 6  ) >>> 5 ) | ( val11 >>> 31 );
+
+			decode[ decodeOffset++ ]	 =   (( val13 << 11 ) >>> 5 ) | ( val12 >>> 25 );
+
+			decode[ decodeOffset++ ]	 =   (( val14 << 16 ) >>> 5 ) | ( val13 >>> 20 );
+
+			decode[ decodeOffset++ ]	 =   (( val15 << 21 ) >>> 5 ) | ( val14 >>> 15 );
+
+			decode[ decodeOffset++ ]	 =   (( val16 << 26 ) >>> 5 ) | ( val15 >>> 10 );
+
+			decode[ decodeOffset++ ]	 =   (( val17 << 31 ) >>> 5 ) | ( val16 >>> 5 );
+
+			decode[ decodeOffset++ ]	 =   ( val18 << 4 ) >>> 5;
+			decode[ decodeOffset++ ]	 =   (( val18 << 9 ) >>> 5 ) | ( val17 >>> 28 );
+
+			decode[ decodeOffset++ ]	 =   (( val19 << 14 ) >>> 5 ) | ( val18 >>> 23 );
+
+			decode[ decodeOffset++ ]	 =   (( val20 << 19 ) >>> 5 ) | ( val19 >>> 18 );
+
+			decode[ decodeOffset++ ]	 =   (( val21 << 24 ) >>> 5 ) | ( val20 >>> 13 );
+
+			decode[ decodeOffset++ ]	 =   (( val22 << 29 ) >>> 5 ) | ( val21 >>> 8 );
+
+			decode[ decodeOffset++ ]	 =   ( val22 << 2 ) >>> 5;
+			decode[ decodeOffset++ ]	 =   (( val23 << 7 ) >>> 5 ) | ( val22 >>> 30 );
+
+			decode[ decodeOffset++ ]	 =   (( val24 << 12 ) >>> 5 ) | ( val23 >>> 25 );
+
+			decode[ decodeOffset++ ]	 =   (( val25 << 17 ) >>> 5 ) | ( val24 >>> 20 );
+
+			decode[ decodeOffset++ ]	 =   (( val26 << 22 ) >>> 5 ) | ( val25 >>> 15 );
+
+			decode[ decodeOffset++ ]	 =   (( val27 << 27 ) >>> 5 ) | ( val26 >>> 10 );
+			decode[ decodeOffset++ ]	 =   val27 >>> 5;
+
+		}
+
+		if( rest == 0 )
+			return offSet;
+
+		int val1   = encodedValue[ offSet++ ];
+		decode[  decodeOffset  ]	 =   ( val1 << 5 ) >>> 5;
+		if( --rest == 0 ) return offSet;
+
+		int val2   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val2 << 10 ) >>> 5 ) | ( val1 >>> 27 );
+		if( --rest == 0 ) return offSet;
+
+		int val3   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val3 << 15 ) >>> 5 ) | ( val2 >>> 22 );
+		if( --rest == 0 ) return offSet;
+
+		int val4   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val4 << 20 ) >>> 5 ) | ( val3 >>> 17 );
+		if( --rest == 0 ) return offSet;
+
+		int val5   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val5 << 25 ) >>> 5 ) | ( val4 >>> 12 );
+		if( --rest == 0 ) return offSet;
+
+		int val6   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val6 << 30 ) >>> 5 ) | ( val5 >>> 7 );
+		if( --rest == 0 ) return offSet;
+		decode[ ++decodeOffset ]	 =   ( val6 << 3 ) >>> 5;
+		if( --rest == 0 ) return offSet;
+
+		int val7   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val7 << 8 ) >>> 5 ) | ( val6 >>> 29 );
+		if( --rest == 0 ) return offSet;
+
+		int val8   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val8 << 13 ) >>> 5 ) | ( val7 >>> 24 );
+		if( --rest == 0 ) return offSet;
+
+		int val9   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val9 << 18 ) >>> 5 ) | ( val8 >>> 19 );
+		if( --rest == 0 ) return offSet;
+
+		int val10   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val10 << 23 ) >>> 5 ) | ( val9 >>> 14 );
+		if( --rest == 0 ) return offSet;
+
+		int val11   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val11 << 28 ) >>> 5 ) | ( val10 >>> 9 );
+		if( --rest == 0 ) return offSet;
+		decode[ ++decodeOffset ]	 =   ( val11 << 1 ) >>> 5;
+		if( --rest == 0 ) return offSet;
+
+		int val12   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val12 << 6  ) >>> 5 ) | ( val11 >>> 31 );
+		if( --rest == 0 ) return offSet;
+
+		int val13   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val13 << 11 ) >>> 5 ) | ( val12 >>> 25 );
+		if( --rest == 0 ) return offSet;
+
+		int val14   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val14 << 16 ) >>> 5 ) | ( val13 >>> 20 );
+		if( --rest == 0 ) return offSet;
+
+		int val15   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val15 << 21 ) >>> 5 ) | ( val14 >>> 15 );
+		if( --rest == 0 ) return offSet;
+
+		int val16   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val16 << 26 ) >>> 5 ) | ( val15 >>> 10 );
+		if( --rest == 0 ) return offSet;
+
+		int val17   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val17 << 31 ) >>> 5 ) | ( val16 >>> 5 );
+		if( --rest == 0 ) return offSet;
+
+		int val18   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   ( val18 << 4 ) >>> 5;
+		if( --rest == 0 ) return offSet;
+		decode[ ++decodeOffset ]	 =   (( val18 << 9 ) >>> 5 ) | ( val17 >>> 28 );
+		if( --rest == 0 ) return offSet;
+
+		int val19   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val19 << 14 ) >>> 5 ) | ( val18 >>> 23 );
+		if( --rest == 0 ) return offSet;
+
+		int val20   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val20 << 19 ) >>> 5 ) | ( val19 >>> 18 );
+		if( --rest == 0 ) return offSet;
+
+		int val21   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val21 << 24 ) >>> 5 ) | ( val20 >>> 13 );
+		if( --rest == 0 ) return offSet;
+
+		int val22   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val22 << 29 ) >>> 5 ) | ( val21 >>> 8 );
+		if( --rest == 0 ) return offSet;
+		decode[ ++decodeOffset ]	 =   ( val22 << 2 ) >>> 5;
+		if( --rest == 0 ) return offSet;
+
+		int val23   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val23 << 7 ) >>> 5 ) | ( val22 >>> 30 );
+		if( --rest == 0 ) return offSet;
+
+		int val24   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val24 << 12 ) >>> 5 ) | ( val23 >>> 25 );
+		if( --rest == 0 ) return offSet;
+
+		int val25   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val25 << 17 ) >>> 5 ) | ( val24 >>> 20 );
+		if( --rest == 0 ) return offSet;
+
+		int val26   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val26 << 22 ) >>> 5 ) | ( val25 >>> 15 );
+		if( --rest == 0 ) return offSet;
+
+		int val27   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val27 << 27 ) >>> 5 ) | ( val26 >>> 10 );
+		return offSet;
+
+	}
+
+	static int fastDeCompressFor28Bit( int offSet, int[] encodedValue, int dataNum, int decodeOffset, int[] decode ){
+
+		int maxBlocks	=  dataNum  >>	3;
+		int rest		=  dataNum  %	8;
+
+		// block process
+		for( int  block = 0 ; block < maxBlocks ; block++ ){
+
+			int val1   = encodedValue[ offSet++ ];
+			int val2   = encodedValue[ offSet++ ];
+			int val3   = encodedValue[ offSet++ ];
+			int val4   = encodedValue[ offSet++ ];
+			int val5   = encodedValue[ offSet++ ];
+			int val6   = encodedValue[ offSet++ ];
+			int val7   = encodedValue[ offSet++ ];
+
+			decode[ decodeOffset++ ]	 =   ( val1 << 4 ) >>> 4;
+			decode[ decodeOffset++ ]	 =   ( ( val2 << 8 ) >>> 4 ) | ( val1 >>> 28 );
+
+			decode[ decodeOffset++ ]	 =   ( ( val3 << 12 ) >>> 4 ) | ( val2 >>> 24 );
+
+			decode[ decodeOffset++ ]	 =   ( ( val4 << 16 ) >>> 4 ) | ( val3 >>> 20 );
+
+			decode[ decodeOffset++ ]	 =   ( ( val5 << 20 ) >>> 4 ) | ( val4 >>> 16 );
+
+			decode[ decodeOffset++ ]	 =   ( ( val6 << 24 ) >>> 4 ) | ( val5 >>> 12 );
+
+			decode[ decodeOffset++ ]	 =   ( ( val7 << 28 ) >>> 4 ) | ( val6 >>> 8 );
+
+			decode[ decodeOffset++ ]	 =   val7 >>> 4 ;
+
+		}
+
+		if( rest == 0 )
+			return offSet;
+
+		int val1   = encodedValue[ offSet++ ];
+		decode[  decodeOffset  ]	 =   ( val1 << 4 ) >>> 4;
+		if( --rest == 0 ) return offSet;
+
+		int val2   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   ( ( val2 << 8 ) >>> 4 ) | ( val1 >>> 28 );
+		if( --rest == 0 ) return offSet;
+
+		int val3   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   ( ( val3 << 12 ) >>> 4 ) | ( val2 >>> 24 );
+		if( --rest == 0 ) return offSet;
+
+		int val4   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   ( ( val4 << 16 ) >>> 4 ) | ( val3 >>> 20 );
+		if( --rest == 0 ) return offSet;
+
+		int val5   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   ( ( val5 << 20 ) >>> 4 ) | ( val4 >>> 16 );
+		if( --rest == 0 ) return offSet;
+
+		int val6   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   ( ( val6 << 24 ) >>> 4 ) | ( val5 >>> 12 );
+		if( --rest == 0 ) return offSet;
+
+		int val7   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   ( ( val7 << 28 ) >>> 4 ) | ( val6 >>> 8 );
+		return offSet;
+
+	}
+
+	static int fastDeCompressFor29Bit( int offSet, int[] encodedValue, int dataNum, int decodeOffset, int[] decode ){
+
+		int maxBlocks	=  dataNum  >>  5;
+		int rest		=  dataNum  %  32;
+
+		// block process
+		for( int  block = 0 ; block < maxBlocks ; block++ ){
+
+			int val1   = encodedValue[ offSet++ ];
+			int val2   = encodedValue[ offSet++ ];
+			int val3   = encodedValue[ offSet++ ];
+			int val4   = encodedValue[ offSet++ ];
+			int val5   = encodedValue[ offSet++ ];
+			int val6   = encodedValue[ offSet++ ];
+			int val7   = encodedValue[ offSet++ ];
+			int val8   = encodedValue[ offSet++ ];
+			int val9   = encodedValue[ offSet++ ];
+			int val10  = encodedValue[ offSet++ ];
+			int val11  = encodedValue[ offSet++ ];
+			int val12  = encodedValue[ offSet++ ];
+			int val13  = encodedValue[ offSet++ ];
+			int val14  = encodedValue[ offSet++ ];
+			int val15  = encodedValue[ offSet++ ];
+			int val16  = encodedValue[ offSet++ ];
+			int val17  = encodedValue[ offSet++ ];
+			int val18  = encodedValue[ offSet++ ];
+			int val19  = encodedValue[ offSet++ ];
+			int val20  = encodedValue[ offSet++ ];
+			int val21  = encodedValue[ offSet++ ];
+			int val22  = encodedValue[ offSet++ ];
+			int val23  = encodedValue[ offSet++ ];
+			int val24  = encodedValue[ offSet++ ];
+			int val25  = encodedValue[ offSet++ ];
+			int val26  = encodedValue[ offSet++ ];
+			int val27  = encodedValue[ offSet++ ];
+			int val28  = encodedValue[ offSet++ ];
+			int val29  = encodedValue[ offSet++ ];
+
+			decode[ decodeOffset++ ]	 =   ( val1 << 3 ) >>> 3;
+			decode[ decodeOffset++ ]	 =   (( val2 << 6 ) >>> 3 ) | ( val1 >>> 29 );
+
+			decode[ decodeOffset++ ]	 =   (( val3 << 9 ) >>> 3 ) | ( val2 >>> 26 );
+
+			decode[ decodeOffset++ ]	 =   (( val4 << 12 ) >>> 3 ) | ( val3 >>> 23 );
+
+			decode[ decodeOffset++ ]	 =   (( val5 << 15 ) >>> 3 ) | ( val4 >>> 20 );
+
+			decode[ decodeOffset++ ]	 =   (( val6 << 18 ) >>> 3 ) | ( val5 >>> 17 );
+
+			decode[ decodeOffset++ ]	 =   (( val7 << 21 ) >>> 3 ) | ( val6 >>> 14 );
+
+			decode[ decodeOffset++ ]	 =   (( val8 << 24 ) >>> 3 ) | ( val7 >>> 11 );
+
+			decode[ decodeOffset++ ]	 =   (( val9 << 27 ) >>> 3 ) | ( val8 >>> 8 );
+
+			decode[ decodeOffset++ ]	 =   (( val10 << 30 ) >>> 3 ) | ( val9 >>> 5 );
+
+			decode[ decodeOffset++ ]	 =   ( val10 << 1 ) >>> 3;
+			decode[ decodeOffset++ ]	 =   (( val11 << 4 ) >>> 3 ) | ( val10 >>> 31 );
+
+			decode[ decodeOffset++ ]	 =   (( val12 << 7  ) >>> 3 ) | ( val11 >>> 28 );
+
+			decode[ decodeOffset++ ]	 =   (( val13 << 10 ) >>> 3 ) | ( val12 >>> 25 );
+
+			decode[ decodeOffset++ ]	 =   (( val14 << 13 ) >>> 3 ) | ( val13 >>> 22 );
+
+			decode[ decodeOffset++ ]	 =   (( val15 << 16 ) >>> 3 ) | ( val14 >>> 19 );
+
+			decode[ decodeOffset++ ]	 =   (( val16 << 19 ) >>> 3 ) | ( val15 >>> 16 );
+
+			decode[ decodeOffset++ ]	 =   (( val17 << 22 ) >>> 3 ) | ( val16 >>> 13 );
+
+			decode[ decodeOffset++ ]	 =   (( val18 << 25 ) >>> 3 ) | ( val17 >>> 10 );
+
+			decode[ decodeOffset++ ]	 =   (( val19 << 28 ) >>> 3 ) | ( val18 >>> 7 );
+
+			decode[ decodeOffset++ ]	 =   (( val20 << 31 ) >>> 3 ) | ( val19 >>> 4 );
+
+			decode[ decodeOffset++ ]	 =   ( val20 << 2 ) >>> 3;
+			decode[ decodeOffset++ ]	 =   (( val21 << 5 ) >>> 3 ) | ( val20 >>> 30 );
+
+			decode[ decodeOffset++ ]	 =   (( val22 << 8 ) >>> 3 ) | ( val21 >>> 27 );
+
+			decode[ decodeOffset++ ]	 =   (( val23 << 11 ) >>> 3 ) | ( val22 >>> 24 );
+
+			decode[ decodeOffset++ ]	 =   (( val24 << 14 ) >>> 3 ) | ( val23 >>> 21 );
+
+			decode[ decodeOffset++ ]	 =   (( val25 << 17 ) >>> 3 ) | ( val24 >>> 18 );
+
+			decode[ decodeOffset++ ]	 =   (( val26 << 20 ) >>> 3 ) | ( val25 >>> 15 );
+
+			decode[ decodeOffset++ ]	 =   (( val27 << 23 ) >>> 3 ) | ( val26 >>> 12 );
+
+			decode[ decodeOffset++ ]	 =   (( val28 << 26 ) >>> 3 ) | ( val27 >>> 9 );
+
+			decode[ decodeOffset++ ]	 =   (( val29 << 29 ) >>> 3 ) | ( val28 >>> 6 );
+
+			decode[ decodeOffset++ ]	 =   val29 >>> 3;
+
+		}
+
+		if( rest == 0 )
+			return offSet;
+
+		int val1   = encodedValue[ offSet++ ];
+		decode[  decodeOffset  ]	 =   ( val1 << 3 ) >>> 3;
+		if( --rest == 0 ) return offSet;
+
+		int val2   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val2 << 6 ) >>> 3 ) | ( val1 >>> 29 );
+		if( --rest == 0 ) return offSet;
+
+		int val3   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val3 << 9 ) >>> 3 ) | ( val2 >>> 26 );
+		if( --rest == 0 ) return offSet;
+
+		int val4   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val4 << 12 ) >>> 3 ) | ( val3 >>> 23 );
+		if( --rest == 0 ) return offSet;
+
+		int val5   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val5 << 15 ) >>> 3 ) | ( val4 >>> 20 );
+		if( --rest == 0 ) return offSet;
+
+		int val6   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val6 << 18 ) >>> 3 ) | ( val5 >>> 17 );
+		if( --rest == 0 ) return offSet;
+
+		int val7   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val7 << 21 ) >>> 3 ) | ( val6 >>> 14 );
+		if( --rest == 0 ) return offSet;
+
+		int val8   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val8 << 24 ) >>> 3 ) | ( val7 >>> 11 );
+		if( --rest == 0 ) return offSet;
+
+		int val9   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val9 << 27 ) >>> 3 ) | ( val8 >>> 8 );
+		if( --rest == 0 ) return offSet;
+
+		int val10   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val10 << 30 ) >>> 3 ) | ( val9 >>> 5 );
+		if( --rest == 0 ) return offSet;
+		decode[ ++decodeOffset ]	 =   ( val10 << 1 ) >>> 3;
+		if( --rest == 0 ) return offSet;
+
+		int val11   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val11 << 4 ) >>> 3 ) | ( val10 >>> 31 );
+		if( --rest == 0 ) return offSet;
+
+		int val12   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val12 << 7  ) >>> 3 ) | ( val11 >>> 28 );
+		if( --rest == 0 ) return offSet;
+
+		int val13   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val13 << 10 ) >>> 3 ) | ( val12 >>> 25 );
+		if( --rest == 0 ) return offSet;
+
+		int val14   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val14 << 13 ) >>> 3 ) | ( val13 >>> 22 );
+		if( --rest == 0 ) return offSet;
+
+		int val15   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val15 << 16 ) >>> 3 ) | ( val14 >>> 19 );
+		if( --rest == 0 ) return offSet;
+
+		int val16   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val16 << 19 ) >>> 3 ) | ( val15 >>> 16 );
+		if( --rest == 0 ) return offSet;
+
+		int val17   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val17 << 22 ) >>> 3 ) | ( val16 >>> 13 );
+		if( --rest == 0 ) return offSet;
+
+		int val18   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val18 << 25 ) >>> 3 ) | ( val17 >>> 10 );
+		if( --rest == 0 ) return offSet;
+
+		int val19   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val19 << 28 ) >>> 3 ) | ( val18 >>> 7 );
+		if( --rest == 0 ) return offSet;
+
+		int val20   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val20 << 31 ) >>> 3 ) | ( val19 >>> 4 );
+		if( --rest == 0 ) return offSet;
+		decode[ ++decodeOffset ]	 =   ( val20 << 2 ) >>> 3;
+		if( --rest == 0 ) return offSet;
+
+		int val21   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val21 << 5 ) >>> 3 ) | ( val20 >>> 30 );
+		if( --rest == 0 ) return offSet;
+
+		int val22   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val22 << 8 ) >>> 3 ) | ( val21 >>> 27 );
+		if( --rest == 0 ) return offSet;
+
+		int val23   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val23 << 11 ) >>> 3 ) | ( val22 >>> 24 );
+		if( --rest == 0 ) return offSet;
+
+		int val24   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val24 << 14 ) >>> 3 ) | ( val23 >>> 21 );
+		if( --rest == 0 ) return offSet;
+
+		int val25   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val25 << 17 ) >>> 3 ) | ( val24 >>> 18 );
+		if( --rest == 0 ) return offSet;
+
+		int val26   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val26 << 20 ) >>> 3 ) | ( val25 >>> 15 );
+		if( --rest == 0 ) return offSet;
+
+		int val27   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val27 << 23 ) >>> 3 ) | ( val26 >>> 12 );
+		if( --rest == 0 ) return offSet;
+
+		int val28   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val28 << 26 ) >>> 3 ) | ( val27 >>> 9 );
+		if( --rest == 0 ) return offSet;
+
+		int val29   = encodedValue[ offSet++ ];
+		decode[ ++decodeOffset ]	 =   (( val29 << 29 ) >>> 3 ) | ( val28 >>> 6 );
+		return offSet;
+
+	}
+
+
+	static int fastDeCompressFor30Bit( int offSet, int[] encodedValue, int dataNum, int decodeOffset, int[] decode ){
+
+		int maxBlocks	=  dataNum  >>	3;
+		int rest		=  dataNum  %	8;
+
+		// block process
+		for( int  block = 0 ; block < maxBlocks ; block++ ){
+
+			int val1	=	encodedValue[ offSet++ ];
+			int val2	=	encodedValue[ offSet++ ];
+			int val3	=	encodedValue[ offSet++ ];
+			int val4	=	encodedValue[ offSet++ ];
+			int val5	=	encodedValue[ offSet++ ];
+			int val6	=	encodedValue[ offSet++ ];
+			int val7	=	encodedValue[ offSet++ ];
+			int val8	=	encodedValue[ offSet++ ];
+			int val9	=	encodedValue[ offSet++ ];
+			int val10	=	encodedValue[ offSet++ ];
+			int val11	=	encodedValue[ offSet++ ];
+			int val12	=	encodedValue[ offSet++ ];
+			int val13	=	encodedValue[ offSet++ ];
+			int val14	=	encodedValue[ offSet++ ];
+			int val15	=	encodedValue[ offSet++ ];
+
+			decode[ decodeOffset++ ]	 =   ( val1 << 2 ) >>> 2;
+			decode[ decodeOffset++ ]	 =   ( ( val2 << 4 ) >>> 2 ) | ( val1 >>> 30 );
+
+			decode[ decodeOffset++ ]	 =   ( ( val3 << 6 ) >>> 2 ) | ( val2 >>> 28 );
+
+			decode[ decodeOffset++ ]	 =   ( ( val4 << 8 ) >>> 2 ) | ( val3 >>> 26 );
+
+			decode[ decodeOffset++ ]	 =   ( ( val5 << 10 ) >>> 2 ) | ( val4 >>> 24 );
+
+			decode[ decodeOffset++ ]	 =   ( ( val6 << 12 ) >>> 2 ) | ( val5 >>> 22 );
+
+			decode[ decodeOffset++ ]	 =   ( ( val7 << 14 ) >>> 2 ) | ( val6 >>> 20 );
+
+			decode[ decodeOffset++ ]	 =   ( ( val8 << 16 ) >>> 2 ) | ( val7 >>> 18 );
+
+			decode[ decodeOffset++ ]	 =   ( ( val9 << 18 ) >>> 2 ) | ( val8 >>> 16 );
+
+			decode[ decodeOffset++ ]	 =   ( ( val10 << 20 ) >>> 2 ) | ( val9 >>> 14 );
+
+			decode[ decodeOffset++ ]	 =   ( ( val11 << 22 ) >>> 2 ) | ( val10 >>> 12 );
+
+			decode[ decodeOffset++ ]	 =   ( ( val12 << 24 ) >>> 2 ) | ( val11 >>> 10 );
+
+			decode[ decodeOffset++ ]	 =   ( ( val13 << 26 ) >>> 2 ) | ( val12 >>> 8 );
+
+			decode[ decodeOffset++ ]	 =   ( ( val14 << 28 ) >>> 2 ) | ( val13 >>> 8 );
+
+			decode[ decodeOffset++ ]	 =   ( ( val15 << 30 ) >>> 2 ) | ( val14 >>> 8 );
+
+			decode[ decodeOffset++ ]	 =   val15 >>> 2 ;
+
+		}
+
+		if( rest == 0 )
+			return offSet;
+
+		int val1	=	encodedValue[ offSet++ ];
+		decode[ decodeOffset++ ]	 =   ( val1 << 2 ) >>> 2;
+		if( --rest == 0 ) return offSet;
+
+		int val2	=	encodedValue[ offSet++ ];
+		decode[ decodeOffset++ ]	 =   ( ( val2 << 4 ) >>> 2 ) | ( val1 >>> 30 );
+		if( --rest == 0 ) return offSet;
+
+		int val3	=	encodedValue[ offSet++ ];
+		decode[ decodeOffset++ ]	 =   ( ( val3 << 6 ) >>> 2 ) | ( val2 >>> 28 );
+		if( --rest == 0 ) return offSet;
+
+		int val4	=	encodedValue[ offSet++ ];
+		decode[ decodeOffset++ ]	 =   ( ( val4 << 8 ) >>> 2 ) | ( val3 >>> 26 );
+		if( --rest == 0 ) return offSet;
+
+		int val5	=	encodedValue[ offSet++ ];
+		decode[ decodeOffset++ ]	 =   ( ( val5 << 10 ) >>> 2 ) | ( val4 >>> 24 );
+		if( --rest == 0 ) return offSet;
+
+		int val6	=	encodedValue[ offSet++ ];
+		decode[ decodeOffset++ ]	 =   ( ( val6 << 12 ) >>> 2 ) | ( val5 >>> 22 );
+		if( --rest == 0 ) return offSet;
+
+		int val7	=	encodedValue[ offSet++ ];
+		decode[ decodeOffset++ ]	 =   ( ( val7 << 14 ) >>> 2 ) | ( val6 >>> 20 );
+		if( --rest == 0 ) return offSet;
+
+		int val8	=	encodedValue[ offSet++ ];
+		decode[ decodeOffset++ ]	 =   ( ( val8 << 16 ) >>> 2 ) | ( val7 >>> 18 );
+		if( --rest == 0 ) return offSet;
+
+		int val9	=	encodedValue[ offSet++ ];
+		decode[ decodeOffset++ ]	 =   ( ( val9 << 18 ) >>> 2 ) | ( val8 >>> 16 );
+		if( --rest == 0 ) return offSet;
+
+		int val10	=	encodedValue[ offSet++ ];
+		decode[ decodeOffset++ ]	 =   ( ( val10 << 20 ) >>> 2 ) | ( val9 >>> 14 );
+		if( --rest == 0 ) return offSet;
+
+		int val11	=	encodedValue[ offSet++ ];
+		decode[ decodeOffset++ ]	 =   ( ( val11 << 22 ) >>> 2 ) | ( val10 >>> 12 );
+		if( --rest == 0 ) return offSet;
+
+		int val12	=	encodedValue[ offSet++ ];
+		decode[ decodeOffset++ ]	 =   ( ( val12 << 24 ) >>> 2 ) | ( val11 >>> 10 );
+		if( --rest == 0 ) return offSet;
+
+		int val13	=	encodedValue[ offSet++ ];
+		decode[ decodeOffset++ ]	 =   ( ( val13 << 26 ) >>> 2 ) | ( val12 >>> 8 );
+		if( --rest == 0 ) return offSet;
+
+		int val14	=	encodedValue[ offSet++ ];
+		decode[ decodeOffset++ ]	 =   ( ( val14 << 28 ) >>> 2 ) | ( val13 >>> 8 );
+		if( --rest == 0 ) return offSet;
+
+		int val15	=	encodedValue[ offSet++ ];
+		decode[ decodeOffset++ ]	 =   ( ( val15 << 30 ) >>> 2 ) | ( val14 >>> 8 );
+		return offSet;
+
+	}
+
+	static int fastDeCompressFor31Bit( int offSet, int[] encodedValue, int dataNum, int decodeOffset, int[] decode ){
+
+		int maxBlocks	=  dataNum  >>  5;
+		int rest		=  dataNum  %  32;
+
+		// block process
+		for( int  block = 0 ; block < maxBlocks ; block++ ){
+
+			int val1   = encodedValue[ offSet++ ];
+			int val2   = encodedValue[ offSet++ ];
+			int val3   = encodedValue[ offSet++ ];
+			int val4   = encodedValue[ offSet++ ];
+			int val5   = encodedValue[ offSet++ ];
+			int val6   = encodedValue[ offSet++ ];
+			int val7   = encodedValue[ offSet++ ];
+			int val8   = encodedValue[ offSet++ ];
+			int val9   = encodedValue[ offSet++ ];
+			int val10  = encodedValue[ offSet++ ];
+			int val11  = encodedValue[ offSet++ ];
+			int val12  = encodedValue[ offSet++ ];
+			int val13  = encodedValue[ offSet++ ];
+			int val14  = encodedValue[ offSet++ ];
+			int val15  = encodedValue[ offSet++ ];
+			int val16  = encodedValue[ offSet++ ];
+			int val17  = encodedValue[ offSet++ ];
+			int val18  = encodedValue[ offSet++ ];
+			int val19  = encodedValue[ offSet++ ];
+			int val20  = encodedValue[ offSet++ ];
+			int val21  = encodedValue[ offSet++ ];
+			int val22  = encodedValue[ offSet++ ];
+			int val23  = encodedValue[ offSet++ ];
+			int val24  = encodedValue[ offSet++ ];
+			int val25  = encodedValue[ offSet++ ];
+			int val26  = encodedValue[ offSet++ ];
+			int val27  = encodedValue[ offSet++ ];
+			int val28  = encodedValue[ offSet++ ];
+			int val29  = encodedValue[ offSet++ ];
+			int val30  = encodedValue[ offSet++ ];
+			int val31  = encodedValue[ offSet++ ];
+
+			decode[ decodeOffset++ ]	 =   ( val1 << 1 ) >>> 1;
+			decode[ decodeOffset++ ]	 =   (( val2 << 2 ) >>> 1 ) | ( val1 >>> 31 );
+
+			decode[ decodeOffset++ ]	 =   (( val3 << 3 ) >>> 1 ) | ( val2 >>> 30 );
+
+			decode[ decodeOffset++ ]	 =   (( val4 << 4 ) >>> 1 ) | ( val3 >>> 29 );
+
+			decode[ decodeOffset++ ]	 =   (( val5 << 5 ) >>> 1 ) | ( val4 >>> 28 );
+
+			decode[ decodeOffset++ ]	 =   (( val6 << 6 ) >>> 1 ) | ( val5 >>> 27 );
+
+			decode[ decodeOffset++ ]	 =   (( val7 << 7 ) >>> 1 ) | ( val6 >>> 26 );
+
+			decode[ decodeOffset++ ]	 =   (( val8 << 8 ) >>> 1 ) | ( val7 >>> 25 );
+
+			decode[ decodeOffset++ ]	 =   (( val9 << 9 ) >>> 1 ) | ( val8 >>> 24 );
+
+			decode[ decodeOffset++ ]	 =   (( val10 << 10 ) >>> 1 ) | ( val9 >>> 23 );
+
+			decode[ decodeOffset++ ]	 =   (( val11 << 11 ) >>> 1 ) | ( val10 >>> 22 );
+
+			decode[ decodeOffset++ ]	 =   (( val12 << 12 ) >>> 1 ) | ( val11 >>> 21 );
+
+			decode[ decodeOffset++ ]	 =   (( val13 << 13 ) >>> 1 ) | ( val12 >>> 20 );
+
+			decode[ decodeOffset++ ]	 =   (( val14 << 14 ) >>> 1 ) | ( val13 >>> 19 );
+
+			decode[ decodeOffset++ ]	 =   (( val15 << 15 ) >>> 1 ) | ( val14 >>> 18 );
+
+			decode[ decodeOffset++ ]	 =   (( val16 << 16 ) >>> 1 ) | ( val15 >>> 17 );
+
+			decode[ decodeOffset++ ]	 =   (( val17 << 17 ) >>> 1 ) | ( val16 >>> 16 );
+
+			decode[ decodeOffset++ ]	 =   (( val18 << 18 ) >>> 1 ) | ( val17 >>> 15 );
+
+			decode[ decodeOffset++ ]	 =   (( val19 << 19 ) >>> 1 ) | ( val18 >>> 14 );
+
+			decode[ decodeOffset++ ]	 =   (( val20 << 20 ) >>> 1 ) | ( val19 >>> 13 );
+
+			decode[ decodeOffset++ ]	 =   (( val21 << 21 ) >>> 1 ) | ( val20 >>> 12 );
+
+			decode[ decodeOffset++ ]	 =   (( val22 << 22 ) >>> 1 ) | ( val21 >>> 11 );
+
+			decode[ decodeOffset++ ]	 =   (( val23 << 23 ) >>> 1 ) | ( val22 >>> 10 );
+
+			decode[ decodeOffset++ ]	 =   (( val24 << 24 ) >>> 1 ) | ( val23 >>> 9 );
+
+			decode[ decodeOffset++ ]	 =   (( val25 << 25 ) >>> 1 ) | ( val24 >>> 8 );
+
+			decode[ decodeOffset++ ]	 =   (( val26 << 26 ) >>> 1 ) | ( val25 >>> 7 );
+
+			decode[ decodeOffset++ ]	 =   (( val27 << 27 ) >>> 1 ) | ( val26 >>> 6 );
+
+			decode[ decodeOffset++ ]	 =   (( val28 << 28 ) >>> 1 ) | ( val27 >>> 5 );
+
+			decode[ decodeOffset++ ]	 =   (( val29 << 29 ) >>> 1 ) | ( val28 >>> 4 );
+
+			decode[ decodeOffset++ ]	 =   (( val30 << 30 ) >>> 1 ) | ( val28 >>> 3 );
+
+			decode[ decodeOffset++ ]	 =   (( val31 << 31 ) >>> 1 ) | ( val28 >>> 2 );
+
+			decode[ decodeOffset++ ]	 =   val31 >>> 1;
+
+		}
+
+		if( rest == 0 )
+			return offSet;
+
+		int val1	=	encodedValue[ offSet++ ];
+		decode[ decodeOffset++ ]	 =   ( val1 << 1 ) >>> 1;
+		if( --rest == 0 ) return offSet;
+
+		int val2	=	encodedValue[ offSet++ ];
+		decode[ decodeOffset++ ]	 =   (( val2 << 2 ) >>> 1 ) | ( val1 >>> 31 );
+		if( --rest == 0 ) return offSet;
+
+		int val3	=	encodedValue[ offSet++ ];
+		decode[ decodeOffset++ ]	 =   (( val3 << 3 ) >>> 1 ) | ( val2 >>> 30 );
+		if( --rest == 0 ) return offSet;
+
+		int val4	=	encodedValue[ offSet++ ];
+		decode[ decodeOffset++ ]	 =   (( val4 << 4 ) >>> 1 ) | ( val3 >>> 29 );
+		if( --rest == 0 ) return offSet;
+
+		int val5	=	encodedValue[ offSet++ ];
+		decode[ decodeOffset++ ]	 =   (( val5 << 5 ) >>> 1 ) | ( val4 >>> 28 );
+		if( --rest == 0 ) return offSet;
+
+		int val6	=	encodedValue[ offSet++ ];
+		decode[ decodeOffset++ ]	 =   (( val6 << 6 ) >>> 1 ) | ( val5 >>> 27 );
+		if( --rest == 0 ) return offSet;
+
+		int val7	=	encodedValue[ offSet++ ];
+		decode[ decodeOffset++ ]	 =   (( val7 << 7 ) >>> 1 ) | ( val6 >>> 26 );
+		if( --rest == 0 ) return offSet;
+
+		int val8	=	encodedValue[ offSet++ ];
+		decode[ decodeOffset++ ]	 =   (( val8 << 8 ) >>> 1 ) | ( val7 >>> 25 );
+		if( --rest == 0 ) return offSet;
+
+		int val9	=	encodedValue[ offSet++ ];
+		decode[ decodeOffset++ ]	 =   (( val9 << 9 ) >>> 1 ) | ( val8 >>> 24 );
+		if( --rest == 0 ) return offSet;
+
+		int val10	=	encodedValue[ offSet++ ];
+		decode[ decodeOffset++ ]	 =   (( val10 << 10 ) >>> 1 ) | ( val9 >>> 23 );
+		if( --rest == 0 ) return offSet;
+
+		int val11	=	encodedValue[ offSet++ ];
+		decode[ decodeOffset++ ]	 =   (( val11 << 11 ) >>> 1 ) | ( val10 >>> 22 );
+		if( --rest == 0 ) return offSet;
+
+		int val12	=	encodedValue[ offSet++ ];
+		decode[ decodeOffset++ ]	 =   (( val12 << 12 ) >>> 1 ) | ( val11 >>> 21 );
+		if( --rest == 0 ) return offSet;
+
+		int val13	=	encodedValue[ offSet++ ];
+		decode[ decodeOffset++ ]	 =   (( val13 << 13 ) >>> 1 ) | ( val12 >>> 20 );
+		if( --rest == 0 ) return offSet;
+
+		int val14	=	encodedValue[ offSet++ ];
+		decode[ decodeOffset++ ]	 =   (( val14 << 14 ) >>> 1 ) | ( val13 >>> 19 );
+		if( --rest == 0 ) return offSet;
+
+		int val15	=	encodedValue[ offSet++ ];
+		decode[ decodeOffset++ ]	 =   (( val15 << 15 ) >>> 1 ) | ( val14 >>> 18 );
+		if( --rest == 0 ) return offSet;
+
+		int val16	=	encodedValue[ offSet++ ];
+		decode[ decodeOffset++ ]	 =   (( val16 << 16 ) >>> 1 ) | ( val15 >>> 17 );
+		if( --rest == 0 ) return offSet;
+
+		int val17	=	encodedValue[ offSet++ ];
+		decode[ decodeOffset++ ]	 =   (( val17 << 17 ) >>> 1 ) | ( val16 >>> 16 );
+		if( --rest == 0 ) return offSet;
+
+		int val18	=	encodedValue[ offSet++ ];
+		decode[ decodeOffset++ ]	 =   (( val18 << 18 ) >>> 1 ) | ( val17 >>> 15 );
+		if( --rest == 0 ) return offSet;
+
+		int val19	=	encodedValue[ offSet++ ];
+		decode[ decodeOffset++ ]	 =   (( val19 << 19 ) >>> 1 ) | ( val18 >>> 14 );
+		if( --rest == 0 ) return offSet;
+
+		int val20	=	encodedValue[ offSet++ ];
+		decode[ decodeOffset++ ]	 =   (( val20 << 20 ) >>> 1 ) | ( val19 >>> 13 );
+		if( --rest == 0 ) return offSet;
+
+		int val21	=	encodedValue[ offSet++ ];
+		decode[ decodeOffset++ ]	 =   (( val21 << 21 ) >>> 1 ) | ( val20 >>> 12 );
+		if( --rest == 0 ) return offSet;
+
+		int val22	=	encodedValue[ offSet++ ];
+		decode[ decodeOffset++ ]	 =   (( val22 << 22 ) >>> 1 ) | ( val21 >>> 11 );
+		if( --rest == 0 ) return offSet;
+
+		int val23	=	encodedValue[ offSet++ ];
+		decode[ decodeOffset++ ]	 =   (( val23 << 23 ) >>> 1 ) | ( val22 >>> 10 );
+		if( --rest == 0 ) return offSet;
+
+		int val24	=	encodedValue[ offSet++ ];
+		decode[ decodeOffset++ ]	 =   (( val24 << 24 ) >>> 1 ) | ( val23 >>> 9 );
+		if( --rest == 0 ) return offSet;
+
+		int val25	=	encodedValue[ offSet++ ];
+		decode[ decodeOffset++ ]	 =   (( val25 << 25 ) >>> 1 ) | ( val24 >>> 8 );
+		if( --rest == 0 ) return offSet;
+
+		int val26	=	encodedValue[ offSet++ ];
+		decode[ decodeOffset++ ]	 =   (( val26 << 26 ) >>> 1 ) | ( val25 >>> 7 );
+		if( --rest == 0 ) return offSet;
+
+		int val27	=	encodedValue[ offSet++ ];
+		decode[ decodeOffset++ ]	 =   (( val27 << 27 ) >>> 1 ) | ( val26 >>> 6 );
+		if( --rest == 0 ) return offSet;
+
+		int val28	=	encodedValue[ offSet++ ];
+		decode[ decodeOffset++ ]	 =   (( val28 << 28 ) >>> 1 ) | ( val27 >>> 5 );
+		if( --rest == 0 ) return offSet;
+
+		int val29	=	encodedValue[ offSet++ ];
+		decode[ decodeOffset++ ]	 =   (( val29 << 29 ) >>> 1 ) | ( val28 >>> 4 );
+		if( --rest == 0 ) return offSet;
+
+		int val30	=	encodedValue[ offSet++ ];
+		decode[ decodeOffset++ ]	 =   (( val30 << 30 ) >>> 1 ) | ( val28 >>> 3 );
+		if( --rest == 0 ) return offSet;
+
+		int val31	=	encodedValue[ offSet++ ];
+		decode[ decodeOffset++ ]	 =   (( val31 << 31 ) >>> 1 ) | ( val28 >>> 2 );
+		return offSet;
+
+	}
+
+	static int fastDeCompressFor32Bit( int offSet, int[] encodedValue, int dataNum, int decodeOffset, int[] decode ){
+
+		int maxBlocks	=  dataNum;
+
+		// block process
+		for( int  block = 0 ; block < maxBlocks ; block++ )
+			decode[ decodeOffset++ ]	=   encodedValue[ offSet++ ];
+
+		return offSet;
 	}
 
 }
