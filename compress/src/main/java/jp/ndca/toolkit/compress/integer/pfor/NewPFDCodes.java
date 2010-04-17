@@ -466,6 +466,16 @@ public class NewPFDCodes extends AbstractIntRangeCodes{
 			case 20 : intOffsetForExceptionRange = PForDecompress.fastDeCompressFor20Bit( encodeOffset, encodedValue, dataNum, decodeOffset, decode ); break;
 			case 21 : intOffsetForExceptionRange = PForDecompress.fastDeCompressFor21Bit( encodeOffset, encodedValue, dataNum, decodeOffset, decode ); break;
 			case 22 : intOffsetForExceptionRange = PForDecompress.fastDeCompressFor22Bit( encodeOffset, encodedValue, dataNum, decodeOffset, decode ); break;
+			case 23 : intOffsetForExceptionRange = PForDecompress.fastDeCompressFor23Bit( encodeOffset, encodedValue, dataNum, decodeOffset, decode ); break;
+			case 24 : intOffsetForExceptionRange = PForDecompress.fastDeCompressFor24Bit( encodeOffset, encodedValue, dataNum, decodeOffset, decode ); break;
+			case 25 : intOffsetForExceptionRange = PForDecompress.fastDeCompressFor25Bit( encodeOffset, encodedValue, dataNum, decodeOffset, decode ); break;
+			case 26 : intOffsetForExceptionRange = PForDecompress.fastDeCompressFor26Bit( encodeOffset, encodedValue, dataNum, decodeOffset, decode ); break;
+			case 27 : intOffsetForExceptionRange = PForDecompress.fastDeCompressFor27Bit( encodeOffset, encodedValue, dataNum, decodeOffset, decode ); break;
+			case 28 : intOffsetForExceptionRange = PForDecompress.fastDeCompressFor28Bit( encodeOffset, encodedValue, dataNum, decodeOffset, decode ); break;
+			case 29 : intOffsetForExceptionRange = PForDecompress.fastDeCompressFor29Bit( encodeOffset, encodedValue, dataNum, decodeOffset, decode ); break;
+			case 30 : intOffsetForExceptionRange = PForDecompress.fastDeCompressFor30Bit( encodeOffset, encodedValue, dataNum, decodeOffset, decode ); break;
+			case 31 : intOffsetForExceptionRange = PForDecompress.fastDeCompressFor31Bit( encodeOffset, encodedValue, dataNum, decodeOffset, decode ); break;
+			case 32 : intOffsetForExceptionRange = PForDecompress.fastDeCompressFor32Bit( encodeOffset, encodedValue, dataNum, decodeOffset, decode ); break;
 			default : throw new RuntimeException("numFramBit is too high ! " + numFrameBit);
 		}
 
