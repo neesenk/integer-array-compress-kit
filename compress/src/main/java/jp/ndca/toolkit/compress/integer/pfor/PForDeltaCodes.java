@@ -488,6 +488,16 @@ public class PForDeltaCodes extends AbstractIntRangeCodes{
 			case 20 : IntOffsetForException = PForDecompress.fastDeCompressFor20Bit( encodeOffset, encodedValue, dataNum, decodeOffset, decode ); break;
 			case 21 : IntOffsetForException = PForDecompress.fastDeCompressFor21Bit( encodeOffset, encodedValue, dataNum, decodeOffset, decode ); break;
 			case 22 : IntOffsetForException = PForDecompress.fastDeCompressFor22Bit( encodeOffset, encodedValue, dataNum, decodeOffset, decode ); break;
+			case 23 : IntOffsetForException = PForDecompress.fastDeCompressFor23Bit( encodeOffset, encodedValue, dataNum, decodeOffset, decode ); break;
+			case 24 : IntOffsetForException = PForDecompress.fastDeCompressFor24Bit( encodeOffset, encodedValue, dataNum, decodeOffset, decode ); break;
+			case 25 : IntOffsetForException = PForDecompress.fastDeCompressFor25Bit( encodeOffset, encodedValue, dataNum, decodeOffset, decode ); break;
+			case 26 : IntOffsetForException = PForDecompress.fastDeCompressFor26Bit( encodeOffset, encodedValue, dataNum, decodeOffset, decode ); break;
+			case 27 : IntOffsetForException = PForDecompress.fastDeCompressFor27Bit( encodeOffset, encodedValue, dataNum, decodeOffset, decode ); break;
+			case 28 : IntOffsetForException = PForDecompress.fastDeCompressFor28Bit( encodeOffset, encodedValue, dataNum, decodeOffset, decode ); break;
+			case 29 : IntOffsetForException = PForDecompress.fastDeCompressFor29Bit( encodeOffset, encodedValue, dataNum, decodeOffset, decode ); break;
+			case 30 : IntOffsetForException = PForDecompress.fastDeCompressFor30Bit( encodeOffset, encodedValue, dataNum, decodeOffset, decode ); break;
+			case 31 : IntOffsetForException = PForDecompress.fastDeCompressFor31Bit( encodeOffset, encodedValue, dataNum, decodeOffset, decode ); break;
+			case 32 : IntOffsetForException = PForDecompress.fastDeCompressFor32Bit( encodeOffset, encodedValue, dataNum, decodeOffset, decode ); break;
 			default : throw new RuntimeException("numFramBit is too high ! " + numFrameBit);
 		}
 
